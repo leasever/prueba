@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vite + TS</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600&family=Nunito:wght@300;400;600&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+    integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="src/css/main.css">
+</head>
+
+<body>
+  <header>
+    <!-- Top header -->
+    <div class="top-header">
+      <div class="container-xxl px-4 py-1">
+        <div class="row justify-content-center justify-content-sm-between">
+          <div class="col-auto d-flex">
+            <p><i class="fa-solid fa-phone"></i></p>
+            <a href="tel:+51951931381">
+              <p>951 931 381</p>
+            </a>
+          </div>
+          <div class="col-auto d-flex ">
+            <a href="mailto:info@dsstore.com">
+              <p class="text-break">info@dsstore.com</p>
+            </a>
+          </div>
+          <div class="col-auto d-flex">
+            <a href="https://wa.me/+51951931381" target="_blanck">
+              <i class="fa-brands fa-whatsapp"></i>
+            </a>
+            <a href="https://www.facebook.com/DragonSilveryStore" target="_blanck">
+              <i class="fa-brands fa-facebook"></i>
+            </a>
+            <a href="https://www.instagram.com/ds_store.pe" target="_blanck">
+              <i class="fa-brands fa-instagram"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Nav -->
+
+    <div class="shadow-sm  bg-light  ">
+      <div class="container-xxl px-4 ">
+        <nav class=" navbar navbar-expand-md navbar-light " sticky-top="top">
+          <a class="navbar-brand" href="#">
+            <div class="main-logo"></div>
+          </a>
+          <button class="navbar-toggler justify-content-end" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse " id="navbarTogglerDemo02">
+            <ul class="navbar-nav me-auto mb-2 mb-md-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Store</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Novedades</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                  aria-expanded="false">
+                  Categorías
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li><a class="dropdown-item" href="#">Electrónicos</a></li>
+                  <li><a class="dropdown-item" href="#">Mascotas</a></li>
+                  <li><a class="dropdown-item" href="#">Hogar</a></li>
+                </ul>
+              </li>
+            </ul>
+            <form class="d-flex col-md-5">
+              <div class="input-group ">
+                <input type="text" class="form-control " placeholder="Buscar..." aria-label="Recipient's username"
+                  aria-describedby="button-addon2" id="buscar" required>
+                <button class="btn btn-outline-secondary btn-custom" type="submit" id="button-addon2">
+                  <p>
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                  </p>
+                </button>
+              </div>
+            </form>
+            <hr class="dropdown-divider ">
+            <div class="login-bag d-flex  gap-3 align-items-center justify-content-end  ps-md-4 py-md-0">
+              <a class="text-center" href="#loginModal" data-bs-toggle="modal">
+                <p>Iniciar sesión</p>
+              </a>
+              <a class=" position-relative " href="" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
+                aria-controls="offcanvasRight">
+                <p class="fs-4">
+                  <i class="fa-solid fa-bag-shopping"></i>
+                </p>
+                <span class="position-absolute  top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                  id="contadorCarrito">
+                  0
+                </span>
+              </a>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </div>
+
+  </header>
+
+  <main>
+    <!-- Carousel -->
+    <section class="carousel-section">
+      <div class="container-xxl my-2 carousel-dss">
+        <div id="carouselExampleDark" class="carousel carousel-fade carousel-dark slide " data-bs-ride="carousel">
+          <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active"
+              aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1"
+              aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2"
+              aria-label="Slide 3"></button>
+          </div>
+          <div class="carousel-inner">
+            <div class="carousel-item active" data-bs-interval="3000">
+              <img src="img/banner/banner1.jpg" class="d-block w-100 img-thumbnail" alt="Mascotas">
+              <div class="carousel-caption d-none d-md-block">
+                <h4 class=" text-white opacity-75">MASCOTAS</h4>
+              </div>
+            </div>
+            <div class="carousel-item" data-bs-interval="2000">
+              <img src="img/banner/banner2.jpg" class="d-block w-100 img-thumbnail" alt="Electrónicos">
+              <div class="carousel-caption d-none d-md-block">
+                <h4 class="text-white opacity-75">ELECTRO</h4>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <img src="img/banner/banner3.jpg" class="d-block w-100 img-thumbnail" alt="Hogar">
+              <div class="carousel-caption d-none d-md-block">
+                <h4 class="text-white opacity-75">HOGAR</h4>
+              </div>
+            </div>
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark"
+            data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark"
+            data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+
+      </div>
+    </section>
+    <!-- Galery products -->
+    <section class="products">
+      <div class="container-xxl p-3 my-3">
+        <div class="d-flex product-title pb-4">
+          <h1 class=" text-center  m-auto text-break">NOVEDADES</h1>
+        </div>
+        <form id="productForm">
+          <input type="text" name="jaja" id="">
+          <button>pulsa</button>
+          <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-4 " id="productSection">
+          </div>
+        </form>
+    </section>
+  </main>
+
+  <!-- footer -->
+  <footer>
+    <p>&copy; Todos los derechos reservados</p>
+  </footer>
+
+  <!-- Canva car-->
+  <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+    <div class="offcanvas-header">
+      <h5 id="offcanvasRightLabel">Carrito</h5>
+      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body" id="carritoContenedor">
+      <h6>Tu carrito está vacío</h6>
+    </div>
+    <p class="precioProducto">Precio Total: $ <span id="precioTotal">0</span></p>
+  </div>
+
+  <!-- modal login -->
+  <div class="modal fade login-modal" id="loginModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Iniciar sesión</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group">
+              <input type="text" name="username" id="username" placeholder="Usuario">
+            </div>
+            <div class="form-group">
+              <input type="password" name="password" id="password" placeholder="Contraseña">
+            </div>
+            <button data-bs-dismiss="modal" type="button" class="btn btn-outline-dark btn-custom btn-block"
+              id="loginButton">Iniciar
+              sesión</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- modal product -->
+  <div id="productModal"></div>
+
+  <script type="module" src="/src/main.ts"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
+    integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+    integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>

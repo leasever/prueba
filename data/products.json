@@ -1,0 +1,41 @@
+[
+  {
+    "_id": 1,
+    "name": "Rascador T-4000",
+    "image": [
+      "img/products/scraper.jpg",
+      "img/products/scraperModal1.jpg",
+      "img/products/scraperModal2.jpg",
+      "img/products/scraperModal3.jpg"
+    ],
+    "description": "Los gatos tienen un impulso natural de rascarse: la acción les ayuda a eliminar material viejo de sus garras y marcar el territorio con las glándulas olorosas de sus patas. Se puede evitar que los gatos de interior ejerzan este impulso en los muebles y tapicerías de la vivienda.",
+    "price": 89,
+    "rating": 4
+  },
+  {
+    "_id": 2,
+    "name": "Headphone Pro",
+    "image": [
+      "img/products/headphone.jpg",
+      "img/products/headphoneModal1.jpg",
+      "img/products/headphoneModal2.jpg",
+      "img/products/headphoneModal3.jpg"
+    ],
+    "description": "El Headphone Pro tiene bajos más potentes, mejora la experiencia de audio cuando se juega y la película, proporciona una alta calidad de sonido para la comunicación de los usuarios en Skype, MSN o escuchando música.",
+    "price": 150,
+    "rating": 3.5
+  },
+  {
+    "_id": 3,
+    "name": "Mochila Pet 7000",
+    "image": [
+      "img/products/mochila.jpg",
+      "img/products/mochilaModal1.jpg",
+      "img/products/mochilaModal2.jpg",
+      "img/products/mochilaModal3.jpg"
+    ],
+    "description": "Ideal para visitas al veterinario, paseos, viajes, o para llevarla donde quieras!, Incluye varios orificios amplios para ventilación, además de contar con un acrílico que protege a tu mascota.",
+    "price": 99,
+    "rating": 4.5
+  }
+]

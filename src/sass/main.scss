@@ -1,0 +1,114 @@
+$color-primary: #590b11;
+$color-title: #090a0d;
+$color-text: #f2f2f2;
+$color-border: rgba(#ccc, 0.5);
+
+//Importar bootstrap
+@import "bootstrap/bootstrap";
+
+body {
+  font-family: "Nunito", sans-serif;
+  font-size: 16px;
+
+  .btn-custom {
+    color: $color-title;
+    &:hover {
+      color: $color-text;
+      background-color: $color-primary;
+    }
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  padding: 0;
+  font-family: "Nunito Sans", sans-serif;
+  color: $color-title;
+}
+
+img {
+  max-width: 100%;
+  vertical-align: top;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  font-weight: 600;
+  text-decoration: none;
+  color: $color-title;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+//header
+header {
+  .top-header {
+    background: $color-primary;
+    color: $color-text;
+    a {
+      color: $color-text;
+      padding: 0px 5px;
+    }
+  }
+
+  .main-logo {
+    background: url("/img/logo.png");
+    height: 50px;
+    width: 70px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  .login-bag {
+    a {
+      &:hover {
+        color: $color-primary;
+      }
+    }
+  }
+}
+
+main {
+  .carousel-dss {
+    h4 {
+      text-shadow: 1px 1px 2px black, 0 0 1em $color-primary,
+        0 0 0.2em $color-primary;
+    }
+  }
+
+  .product-title {
+    h1 {
+      border-bottom: 3px solid $color-title;
+    }
+  }
+}
+
+//footer
+footer {
+  border-top: 1px solid $color-border;
+  padding: 30px 0;
+  text-align: center;
+}
+
+//login modal
+.login-modal {
+  input {
+    width: 100%;
+    border: 1px solid $color-border;
+    font-size: 16px;
+    padding: 10px;
+    margin-bottom: 12px;
+  }
+}
