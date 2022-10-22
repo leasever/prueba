@@ -5,7 +5,11 @@ export interface ProductEntry {
   description: string
   price: number
   rating: number
-  quantity?: number
 }
 
-export type ProductCart = Pick<ProductEntry, 'name' | 'image' | 'price' | 'quantity'>
+export interface Cart extends Pick<ProductEntry, '_id' > {
+  quantity: number
+  //------------------------------------------
+  deleteItem?: (id:number) => void 
+}
+

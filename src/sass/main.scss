@@ -3,9 +3,6 @@ $color-title: #090a0d;
 $color-text: #f2f2f2;
 $color-border: rgba(#ccc, 0.5);
 
-//Importar bootstrap
-@import "bootstrap/bootstrap";
-
 body {
   font-family: "Nunito", sans-serif;
   font-size: 16px;
@@ -16,6 +13,10 @@ body {
       color: $color-text;
       background-color: $color-primary;
     }
+  }
+  .icon-cart{
+    font-size: 12px;
+    font-weight: 600;
   }
 }
 
@@ -30,12 +31,12 @@ h6 {
   font-family: "Nunito Sans", sans-serif;
   color: $color-title;
 }
-
+//Importar bootstrap
+@import "bootstrap/bootstrap";
 img {
   max-width: 100%;
   vertical-align: top;
 }
-
 p {
   margin: 0;
   padding: 0;
@@ -62,6 +63,12 @@ header {
     }
   }
 
+  .header-stiky {
+    z-index: 998;
+    background: rgba($light, 0.5);
+    backdrop-filter: blur(10px);
+  }
+  
   .main-logo {
     background: url("/img/logo.png");
     height: 50px;
@@ -69,6 +76,11 @@ header {
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
+  }
+
+  .sub-menu{
+    position: relative;
+    z-index: 998;
   }
 
   .login-bag {
@@ -80,14 +92,25 @@ header {
   }
 }
 
-main {
-  .carousel-dss {
+//class stiky
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.sticky + .content {
+  padding-top: 102px;
+}
+
+//main
+main {  
+  .carousel-dss {   
     h4 {
       text-shadow: 1px 1px 2px black, 0 0 1em $color-primary,
         0 0 0.2em $color-primary;
     }
   }
-
   .product-title {
     h1 {
       border-bottom: 3px solid $color-title;
@@ -111,4 +134,20 @@ footer {
     padding: 10px;
     margin-bottom: 12px;
   }
+}
+
+//Product Item
+
+.img-cart {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+}
+
+.quantity-cart {
+  font-size: 0.75rem;
+}
+
+.price-cart {
+  font-size: 0.85rem;
 }

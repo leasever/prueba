@@ -3,9 +3,9 @@
 
 <head>
   <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <link rel="icon" type="image/svg+xml" href="" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vite + TS</title>
+  <title>DSS - Store</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
@@ -20,7 +20,7 @@
 <body>
   <header>
     <!-- Top header -->
-    <div class="top-header">
+    <div class="top-header ">
       <div class="container-xxl px-4 py-1">
         <div class="row justify-content-center justify-content-sm-between">
           <div class="col-auto d-flex">
@@ -51,9 +51,9 @@
 
     <!-- Nav -->
 
-    <div class="shadow-sm  bg-light  ">
+    <div class="shadow-sm  header-stiky sub-menu" id="myHeader">
       <div class="container-xxl px-4 ">
-        <nav class=" navbar navbar-expand-md navbar-light " sticky-top="top">
+        <nav class="navbar navbar-expand-md navbar-light">
           <a class="navbar-brand" href="#">
             <div class="main-logo"></div>
           </a>
@@ -62,7 +62,7 @@
             aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
-          <div class="collapse navbar-collapse " id="navbarTogglerDemo02">
+          <div class="collapse navbar-collapse sub-menu" id="navbarTogglerDemo02">
             <ul class="navbar-nav me-auto mb-2 mb-md-0">
               <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="#">Store</a>
@@ -70,16 +70,18 @@
               <li class="nav-item">
                 <a class="nav-link" href="#">Novedades</a>
               </li>
-              <li class="nav-item dropdown">
+              <li class="nav-item dropdown ">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
                   aria-expanded="false">
                   Categorías
                 </a>
+
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                   <li><a class="dropdown-item" href="#">Electrónicos</a></li>
                   <li><a class="dropdown-item" href="#">Mascotas</a></li>
                   <li><a class="dropdown-item" href="#">Hogar</a></li>
                 </ul>
+
               </li>
             </ul>
             <form class="d-flex col-md-5">
@@ -101,7 +103,7 @@
               <a class=" position-relative " href="" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
                 aria-controls="offcanvasRight">
                 <p class="fs-4">
-                  <i class="fa-solid fa-bag-shopping"></i>
+                  <i class="fa-solid fa-shopping-cart"></i>
                 </p>
                 <span class="position-absolute  top-0 start-100 translate-middle badge rounded-pill bg-danger"
                   id="contadorCarrito">
@@ -118,8 +120,8 @@
 
   <main>
     <!-- Carousel -->
-    <section class="carousel-section">
-      <div class="container-xxl my-2 carousel-dss">
+    <section>
+      <div class="container-xxl my-2 carousel-dss content ">
         <div id="carouselExampleDark" class="carousel carousel-fade carousel-dark slide " data-bs-ride="carousel">
           <div class="carousel-indicators">
             <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active"
@@ -169,30 +171,39 @@
         <div class="d-flex product-title pb-4">
           <h1 class=" text-center  m-auto text-break">NOVEDADES</h1>
         </div>
-        <form id="productForm">
-          <input type="text" name="jaja" id="">
-          <button>pulsa</button>
-          <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-4 " id="productSection">
-          </div>
-        </form>
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-4 loader-page" id="productSection"></div>
     </section>
   </main>
+
 
   <!-- footer -->
   <footer>
     <p>&copy; Todos los derechos reservados</p>
   </footer>
 
-  <!-- Canva car-->
-  <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+  <!-- canvas car-->
+  <div class="offcanvas offcanvas-end overflow-auto pb-4 " tabindex="-1" id="offcanvasRight"
+    aria-labelledby="offcanvasRightLabel">
     <div class="offcanvas-header">
-      <h5 id="offcanvasRightLabel">Carrito</h5>
+      <h3 id="offcanvasRightLabel">Carrito</h3>
       <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
-    <div class="offcanvas-body" id="carritoContenedor">
-      <h6>Tu carrito está vacío</h6>
+    <div>
+      <div class="offcanvas-body" id="carritoContenedor">
+      </div>
+      <div class="d-flex flex-column col-9 mx-auto gap-2">
+        <span class="fs-5 m-auto" id="precioTotal">DSS</span>
+        <button class="btn btn-outline-dark btn-custom fs-5 disabled" id="btnPay">Médios de pago</button>
+        <p class="fs-2 text-center">
+          <i class="fa-brands fa-cc-paypal"></i>
+          <i class="fa-brands fa-cc-visa "></i>
+          <i class="fa-brands fa-cc-mastercard"></i>
+          <i class="fa-brands fa-cc-amex"></i>
+          <i class="fa-brands fa-cc-diners-club"></i>
+          <i class="fa-brands fa-cc-discover"></i>
+        </p>
+      </div>
     </div>
-    <p class="precioProducto">Precio Total: $ <span id="precioTotal">0</span></p>
   </div>
 
   <!-- modal login -->
@@ -223,13 +234,15 @@
   <!-- modal product -->
   <div id="productModal"></div>
 
-  <script type="module" src="/src/main.ts"></script>
+
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
-    integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
-    crossorigin="anonymous"></script>
+    integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"
+    defer></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
-    integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
-    crossorigin="anonymous"></script>
+    integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"
+    defer></script>
+
+  <script type="module" src="/src/main.ts" defer></script>
 </body>
 
 </html>

@@ -1,38 +1,12 @@
-import Rating from "./Rating";
 import { ProductEntry } from "../types";
 
 export default function ProductGallery({
   _id,
   name,
   image,
-  rating,
-  price,
   description,
-}: ProductEntry) {  
-  return (
-    (document.getElementById(
-      "productSection",
-    )!.innerHTML += ` <div class="col" key="${_id}">
-        <div class="card">
-          <a href="#staticBackdrop${_id}" data-bs-toggle="modal" >
-            <img src="${image[0]}" class="card-img-top" alt="${name}">
-          </a>
-          <div class="card-body">          
-            <span class="card-title" name="productName" >${name}</span>
-            <p class="card-text" id="productprice" >$ ${price}</p>
-            <div id="starts">
-            ${Rating(rating)}     
-            </div>         
-          </div>
-          <div class="d-grid col-6 mx-auto mb-3">
-            <button id="agregar${_id}" class="btn btn-outline-dark btn-custom text-break" type="button">Añadir&nbsp;
-              <i class="fa-solid fa-bag-shopping"></i>
-            </button>            
-          </div>
-        </div>
-     </div>`),
-    //product modal
-    (document.getElementById("productModal")!.innerHTML += `
+}: ProductEntry) {
+  return (document.getElementById("productModal")!.innerHTML += `
   <div class="modal fade" id="staticBackdrop${_id}" key="${_id}" >
     <div class="modal-dialog modal-md modal-dialog-centered">
       <div class="modal-content">
@@ -80,6 +54,5 @@ export default function ProductGallery({
         </div>
       </div>
     </div>
-  </div>`)
-  );
+  </div>`);
 }

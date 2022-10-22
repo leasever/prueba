@@ -1,20 +1,17 @@
-import { ProductEntry, ProductCart } from './types'
-import productData from '../data/products.json'
-import StoreItem from './components/StoreItem'
+import "./css/main.css";
+import { skityTop } from "./utilities/SkityTop";
+import { ProductItem } from "../src/components/ProductItem";
+import { shopingCartContext } from "./context/ShopingCartContext";
+import { getLocalStorage } from "./hooks/useLocalStore";
 
-const products: ProductEntry[] = productData as ProductEntry[]
-products.map((item) => {
-  StoreItem(item)
-})
+window.onscroll = function () {
+  skityTop();
+};
+ProductItem();
+document.addEventListener("DOMContentLoaded", () => {   
+  if (getLocalStorage("carrito")) {
+    shopingCartContext();
+  }
+});
 
-
-// const ProductList = document.querySelector<HTMLFormElement>('#productForm')
-// const ProductList = document.querySelector<HTMLFormElement>('#productForm')
-// let cart: ProductCart[] = []
-
-// ProductList?.addEventListener('submit', e => {
-//   e.preventDefault()
-//   const title = ProductList['jaja'] as unknown as HTMLInputElement
-//   console.log(title.value)
-// })
 

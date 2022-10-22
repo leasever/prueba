@@ -1,4 +1,4 @@
-export default function Rating(rating: number) {
+export default function rating(rating: number) {
   return `
   <i class=
   ${
