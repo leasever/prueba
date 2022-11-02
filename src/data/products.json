@@ -8,7 +8,7 @@
       "img/products/scraperModal2.jpg",
       "img/products/scraperModal3.jpg"
     ],
-    "description": "Los gatos tienen un impulso natural de rascarse: la acción les ayuda a eliminar material viejo de sus garras y marcar el territorio con las glándulas olorosas de sus patas. Se puede evitar que los gatos de interior ejerzan este impulso en los muebles y tapicerías de la vivienda.",
+    "description": "Los gatos tienen un impulso natural de rascarse: la acción les ayuda a eliminar material viejo de sus garras y marcar el territorio con las glándulas olorosas de sus patas.",
     "price": 89,
     "rating": 4
   },
@@ -21,7 +21,7 @@
       "img/products/headphoneModal2.jpg",
       "img/products/headphoneModal3.jpg"
     ],
-    "description": "El Headphone Pro tiene bajos más potentes, mejora la experiencia de audio cuando se juega y la película, proporciona una alta calidad de sonido para la comunicación de los usuarios en Skype, MSN o escuchando música.",
+    "description": "El Headphone Pro tiene bajos más potentes, mejora la experiencia de audio, proporciona una alta calidad de sonido.",
     "price": 150,
     "rating": 3.5
   },

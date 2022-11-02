@@ -1,8 +1,8 @@
 import Rating from "../utilities/rating";
 import productData from "../data/products.json";
 import { ProductEntry } from "../types";
-import increaseCartQuantity from "../context/ShopingCartContext";
-import StoreItem from "./ProductModal"
+import { increaseCartQuantity } from "../context/ShopingCartContext";
+import StoreItem from "./ProductModal";
 
 const listProduct = document.querySelector<HTMLDivElement>("#productSection");
 const products: ProductEntry[] = productData as ProductEntry[];
@@ -10,7 +10,7 @@ const products: ProductEntry[] = productData as ProductEntry[];
 export function ProductItem() {
   products.forEach((product) => {
     const productElement = document.createElement("div");
-    productElement.className = "col";    
+    productElement.className = "col";
 
     /*** card product ***/
     const divCardProduct = document.createElement("div");
@@ -23,13 +23,14 @@ export function ProductItem() {
     const imageProduct = document.createElement("img");
     imageProduct.src = product.image[0];
     imageProduct.className = "card-img-top";
+    imageProduct.setAttribute("alt", product.name);
 
     /*** body card product ***/
     const bodyCard = document.createElement("div");
     bodyCard.className = "card-body";
 
     /*** product name ***/
-    const nameProduct = document.createElement("h5");
+    const nameProduct = document.createElement("span");
     nameProduct.textContent = product.name;
     nameProduct.className = "card-title d-flex justify-content-between bgn fs-3 mb-2";
 
@@ -50,24 +51,24 @@ export function ProductItem() {
     btnAddCart.className = "btn btn-outline-dark btn-custom text-break";
     btnAddCart.innerText = "Añadir ";
 
-    const iconAdded = document.createElement("i");      
-    iconAdded.id = "icon" + product._id
-    
+    const iconAdded = document.createElement("i");
+    iconAdded.id = "icon" + product._id;
+
     btnAddCart.addEventListener("click", () => {
-      increaseCartQuantity(product._id);       
+      increaseCartQuantity(product._id);
     });
 
     const iconCart = document.createElement("i");
     iconCart.className = "fa-solid fa-shopping-cart";
 
     /*** injection html ***/
-    nameProduct.append(spanPrice)
+    nameProduct.append(spanPrice);
 
     bodyCard.append(nameProduct);
     bodyCard.append(ratings);
 
     btnAddCart.append(iconCart);
-    btnAddCart.append(iconAdded);        
+    btnAddCart.append(iconAdded);
 
     btnDiv.append(btnAddCart);
 
@@ -83,6 +84,6 @@ export function ProductItem() {
 }
 
 /** Modal product details */
-products.forEach(item => {
-  StoreItem(item)
-})
+products.forEach((item) => {
+  StoreItem(item);
+});

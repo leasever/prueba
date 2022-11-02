@@ -1,13 +1,11 @@
 import productData from "../data/products.json";
 import { ProductEntry } from "../types";
 import { Cart } from "../types";
-import increaseCartQuantity, {
-  decreaseCartQuantity,
-  removeFromCart,
-} from "../context/ShopingCartContext";
+import { increaseCartQuantity, decreaseCartQuantity, removeFromCart } from "../context/ShopingCartContext";
+import { paymentRegister } from "../context/PaymentRegister";
 
-const listCartItem =
-  document.querySelector<HTMLDivElement>("#carritoContenedor");
+
+const cartcontainer = document.querySelector<HTMLDivElement>("#cartContainer")!;
 const spanTotal = document.querySelector<HTMLSpanElement>("#precioTotal")!;
 const btnPayment = document.querySelector<HTMLButtonElement>("#btnPay")!;
 const countItems = document.querySelector<HTMLSpanElement>("#contadorCarrito")!;
@@ -25,22 +23,26 @@ export function CartItem(cartList: Cart[]) {
   }
 
   cartList.map((item) => {
-    const product = products.find((i) => i._id === item._id);
+    const product = products.find((i) => i._id === item._id)!;
     count += item.quantity;
-    countItems.innerText = count.toString();   
+    countItems.innerText = count.toString();
 
     /*** container item product ***/
     const divItemProduct = document.createElement("div");
     divItemProduct.className = "d-flex align-items-center gap-2 mb-2";
 
+    /**image de product item ***/
+    const enlaceModal = document.createElement("a");
+    enlaceModal.href = "#staticBackdrop" + product._id;
+    enlaceModal.setAttribute("data-bs-toggle", "modal");
+
     /*** product image ***/
     const imgProduct = document.createElement("img");
-    imgProduct.src = product!.image[0];
+    imgProduct.src = product.image[0];
     imgProduct.className = "img-cart img-thumbnail";
 
     const divWrap = document.createElement("div");
-    divWrap.className =
-      "d-flex flex-wrap justify-content-between w-100 gap-2 me-auto";
+    divWrap.className = "d-flex flex-wrap justify-content-between w-100 gap-2 me-auto";
 
     const divDetailProduct = document.createElement("div");
     divDetailProduct.className = "me-auto";
@@ -58,15 +60,15 @@ export function CartItem(cartList: Cart[]) {
     /*** product price ***/
     const divPrice = document.createElement("div");
     divPrice.className = "text-muted price-cart";
-    divPrice.innerText = "$ " + product!.price.toString();
+    divPrice.innerText = "$ " + product.price.toString();
 
     /*** product subtotal ***/
     const divSubTotal = document.createElement("div");
-    divSubTotal.innerText = "$ " + (product!.price * item.quantity).toString();
-    total += product!.price * item.quantity;
+    divSubTotal.innerText = "$ " + (product.price * item.quantity).toString();
+    total += product.price * item.quantity;
 
     const divbtns = document.createElement("div");
-    divbtns.className = "d-flex flex-wrap gap-1";
+    divbtns.className = "d-flex flex-wrap gap-1 col-12";
 
     /*** button - ***/
     const btnDecrease = document.createElement("button");
@@ -77,18 +79,18 @@ export function CartItem(cartList: Cart[]) {
     });
     const iconDecrease = document.createElement("i");
     iconDecrease.className = "fas fa-minus";
-    ;
-
     /*** button remove item ***/
     const btnRemove = document.createElement("button");
     btnRemove.type = "button";
     btnRemove.className = "btn btn-danger icon-cart";
     btnRemove.addEventListener("click", (): void => {
-      removeFromCart(item._id);
+      if (confirm("Desea eliminar el producto: " + product?.name)) {
+        removeFromCart(item._id);
+      }
+      return;
     });
     const iconRemove = document.createElement("i");
     iconRemove.className = "fas fa-trash-alt";
-    
 
     /*** button + ***/
     const btnIncrease = document.createElement("button");
@@ -99,13 +101,12 @@ export function CartItem(cartList: Cart[]) {
     });
     const iconIncrease = document.createElement("i");
     iconIncrease.className = "fas fa-plus";
-    
 
     /*** injection html ***/
-    btnDecrease.append(iconDecrease)
+    btnDecrease.append(iconDecrease);
     btnRemove.append(iconRemove);
     btnIncrease.append(iconIncrease);
-    
+
     if (item.quantity > 1) {
       divProductName.append(spanQuantity);
       divbtns.append(btnDecrease);
@@ -121,15 +122,19 @@ export function CartItem(cartList: Cart[]) {
     divWrap.append(divSubTotal);
     divWrap.append(divbtns);
 
-    divItemProduct.append(imgProduct);
+    enlaceModal.append(imgProduct);
+    divItemProduct.append(enlaceModal);
     divItemProduct.append(divWrap);
-    
+
     spanTotal.innerText = "Total : $ " + total.toString();
 
     btnPayment.innerText = "Pagar";
     btnPayment.classList.remove("disabled");
 
-    return listCartItem?.append(divItemProduct);
+    return cartcontainer?.append(divItemProduct);
   });
-
 }
+btnPayment.addEventListener("click", (e) => {
+  e.preventDefault()
+  paymentRegister(); 
+});

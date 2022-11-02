@@ -4,20 +4,19 @@ import { useLocalStorage, getLocalStorage } from "../hooks/useLocalStore";
 
 let cartList: Cart[] = [];
 
-const listCartItem =
-  document.querySelector<HTMLDivElement>("#carritoContenedor")!;
+const cartcontainer = document.querySelector<HTMLDivElement>("#cartContainer")!;
 
 export function shopingCartContext() {
   cartList = getLocalStorage("carrito");
   updateCart(cartList);
   cartList.forEach((item) => {
     if (item?._id) {
-      checkIconAdded(item._id,true)      
+      checkIconAdded(item._id, true);
     }
   });
 }
 
-export default function increaseCartQuantity(_id: number) {
+export function increaseCartQuantity(_id: number) {
   if (cartList.find((item) => item._id === _id) == null) {
     cartList = [...cartList, { _id, quantity: 1 }];
   } else {
@@ -31,13 +30,13 @@ export default function increaseCartQuantity(_id: number) {
     });
   }
   updateCart(cartList);
-  checkIconAdded(_id, true)
+  checkIconAdded(_id, true);
 }
 
 export function decreaseCartQuantity(_id: number) {
-  if (cartList.find((item) => item._id === _id)?.quantity === 1) {    
-    cartList = cartList.filter((item) => item._id !== _id);    
-    checkIconAdded(_id, false)
+  if (cartList.find((item) => item._id === _id)?.quantity === 1) {
+    cartList = cartList.filter((item) => item._id !== _id);
+    checkIconAdded(_id, false);
   } else {
     cartList.map((item) => {
       if (item._id === _id) {
@@ -54,20 +53,20 @@ export function decreaseCartQuantity(_id: number) {
 export function removeFromCart(_id: number) {
   cartList = cartList.filter((item) => item._id !== _id);
   updateCart(cartList);
-  checkIconAdded(_id, false)
+  checkIconAdded(_id, false);
 }
 
-function checkIconAdded(_id: number, condition: boolean ){
+function checkIconAdded(_id: number, condition: boolean) {
   const iconAdded = document.querySelector<HTMLButtonElement>("#icon" + _id)!;
-  if(condition){
+  if (condition) {
     iconAdded.className = "fas fa-check-circle ms-1";
-  }else{
+  } else {
     iconAdded.className = " ";
   }
 }
 
 function updateCart(cartList: Cart[]) {
-  listCartItem.innerHTML = ``;
+  cartcontainer.innerHTML = ``;
   CartItem(cartList);
   useLocalStorage<Cart[]>("carrito", cartList);
 }

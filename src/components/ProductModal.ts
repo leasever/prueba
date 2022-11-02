@@ -1,14 +1,9 @@
 import { ProductEntry } from "../types";
 
-export default function ProductGallery({
-  _id,
-  name,
-  image,
-  description,
-}: ProductEntry) {
+export default function ProductGallery({ _id, name, image, description }: ProductEntry) {
   return (document.getElementById("productModal")!.innerHTML += `
   <div class="modal fade" id="staticBackdrop${_id}" key="${_id}" >
-    <div class="modal-dialog modal-md modal-dialog-centered">
+    <div class="modal-dialog modal-md ">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title px-0" id="exampleModalLabel">${name}</h5>
@@ -25,11 +20,9 @@ export default function ProductGallery({
                     <button type="button" data-bs-target="#carouselExampleIndicators${_id}" data-bs-slide-to="2" aria-label="Slide 3"></button>
                   </div>
                   <div class="carousel-inner text-center">
-                    ${image.map(function (img: string, index: number) {
+                    ${image.map((img, index) => {
                       if (index > 0 && index <= 3) {
-                        return `<div class="carousel-item  ${
-                          index === 1 ? "active" : ""
-                        }">
+                        return `<div class="carousel-item  ${index === 1 ? "active" : ""}">
                           <img src="${img}" class="d-block w-100 img-thumbnail" alt="${name}">
                         </div>`;
                       }

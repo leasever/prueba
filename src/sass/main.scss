@@ -3,8 +3,10 @@ $color-title: #090a0d;
 $color-text: #f2f2f2;
 $color-border: rgba(#ccc, 0.5);
 
+//Importar bootstrap
+@import "bootstrap/bootstrap";
+
 body {
-  font-family: "Nunito", sans-serif;
   font-size: 16px;
 
   .btn-custom {
@@ -14,9 +16,55 @@ body {
       background-color: $color-primary;
     }
   }
-  .icon-cart{
-    font-size: 12px;
-    font-weight: 600;
+  .icon-cart {
+    font-size: 10px;
+  }
+  .loader-page {
+    position: fixed;
+    z-index: 996;
+    background: rgb(255, 255, 255);
+    left: 0px;
+    top: 0px;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.7s ease;
+  }
+  .loader-page::before {
+    content: "";
+    position: absolute;
+    border: 2px solid rgb(50, 150, 176);
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    box-sizing: border-box;
+    border-left: 2px solid rgba(50, 150, 176, 0);
+    border-top: 2px solid rgba(50, 150, 176, 0);
+    animation: rotarload 1s linear infinite;
+    transform: rotate(0deg);
+  }
+  @keyframes rotarload {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  .loader-page::after {
+    content: "";
+    position: absolute;
+    border: 2px solid rgba(50, 150, 176, 0.5);
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    box-sizing: border-box;
+    border-left: 2px solid rgba(50, 150, 176, 0);
+    border-top: 2px solid rgba(50, 150, 176, 0);
+    animation: rotarload 1s ease-out infinite;
+    transform: rotate(0deg);
   }
 }
 
@@ -28,11 +76,9 @@ h5,
 h6 {
   margin: 0;
   padding: 0;
-  font-family: "Nunito Sans", sans-serif;
   color: $color-title;
 }
-//Importar bootstrap
-@import "bootstrap/bootstrap";
+
 img {
   max-width: 100%;
   vertical-align: top;
@@ -48,27 +94,24 @@ a {
   color: $color-title;
 
   &:hover {
+    color: $color-primary;
     text-decoration: underline;
   }
 }
 
 //header
 header {
-  .top-header {
-    background: $color-primary;
-    color: $color-text;
-    a {
-      color: $color-text;
-      padding: 0px 5px;
-    }
-  }
+  position: sticky;
+  top: 0;
+  z-index: 999;
 
   .header-stiky {
     z-index: 998;
     background: rgba($light, 0.5);
     backdrop-filter: blur(10px);
+    width: 100%;
   }
-  
+
   .main-logo {
     background: url("/img/logo.png");
     height: 50px;
@@ -76,11 +119,6 @@ header {
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
-  }
-
-  .sub-menu{
-    position: relative;
-    z-index: 998;
   }
 
   .login-bag {
@@ -104,11 +142,10 @@ header {
 }
 
 //main
-main {  
-  .carousel-dss {   
+main {
+  .carousel-dss {
     h4 {
-      text-shadow: 1px 1px 2px black, 0 0 1em $color-primary,
-        0 0 0.2em $color-primary;
+      text-shadow: 1px 1px 2px black, 0 0 1em $color-primary, 0 0 0.2em $color-primary;
     }
   }
   .product-title {
@@ -139,9 +176,9 @@ footer {
 //Product Item
 
 .img-cart {
-  width: 120px;
-  height: 120px;
-  object-fit: cover;
+  width: 150px;
+  height: 100px;
+  object-fit: contain;
 }
 
 .quantity-cart {

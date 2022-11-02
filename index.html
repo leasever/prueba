@@ -1,16 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
   <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>DSS - Store</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600&family=Nunito:wght@300;400;600&display=swap"
-    rel="stylesheet" />
+  <link rel="icon" type="image/svg+xml" href="" />
+  <meta name="description" content="Productos originales y de la mejor calidad">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
     integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -18,43 +14,14 @@
 </head>
 
 <body>
+  <div class="loader-page" id="loaderSection"></div>
   <header>
-    <!-- Top header -->
-    <div class="top-header ">
-      <div class="container-xxl px-4 py-1">
-        <div class="row justify-content-center justify-content-sm-between">
-          <div class="col-auto d-flex">
-            <p><i class="fa-solid fa-phone"></i></p>
-            <a href="tel:+51951931381">
-              <p>951 931 381</p>
-            </a>
-          </div>
-          <div class="col-auto d-flex ">
-            <a href="mailto:info@dsstore.com">
-              <p class="text-break">info@dsstore.com</p>
-            </a>
-          </div>
-          <div class="col-auto d-flex">
-            <a href="https://wa.me/+51951931381" target="_blanck">
-              <i class="fa-brands fa-whatsapp"></i>
-            </a>
-            <a href="https://www.facebook.com/DragonSilveryStore" target="_blanck">
-              <i class="fa-brands fa-facebook"></i>
-            </a>
-            <a href="https://www.instagram.com/ds_store.pe" target="_blanck">
-              <i class="fa-brands fa-instagram"></i>
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-
+    <!-- Tospan header -->
     <!-- Nav -->
-
-    <div class="shadow-sm  header-stiky sub-menu" id="myHeader">
+    <div class="shadow-sm  header-stiky " id="myHeader">
       <div class="container-xxl px-4 ">
         <nav class="navbar navbar-expand-md navbar-light">
-          <a class="navbar-brand" href="#">
+          <a class="navbar-brand" href="#" aria-label="Logo dss">
             <div class="main-logo"></div>
           </a>
           <button class="navbar-toggler justify-content-end" type="button" data-bs-toggle="collapse"
@@ -62,7 +29,7 @@
             aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
-          <div class="collapse navbar-collapse sub-menu" id="navbarTogglerDemo02">
+          <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
             <ul class="navbar-nav me-auto mb-2 mb-md-0">
               <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="#">Store</a>
@@ -88,7 +55,8 @@
               <div class="input-group ">
                 <input type="text" class="form-control " placeholder="Buscar..." aria-label="Recipient's username"
                   aria-describedby="button-addon2" id="buscar" required>
-                <button class="btn btn-outline-secondary btn-custom" type="submit" id="button-addon2">
+                <button class="btn btn-outline-secondary btn-custom" type="submit" id="button-addon2"
+                  aria-label="Search">
                   <p>
                     <i class="fa-solid fa-magnifying-glass"></i>
                   </p>
@@ -97,10 +65,12 @@
             </form>
             <hr class="dropdown-divider ">
             <div class="login-bag d-flex  gap-3 align-items-center justify-content-end  ps-md-4 py-md-0">
-              <a class="text-center" href="#loginModal" data-bs-toggle="modal">
-                <p>Iniciar sesión</p>
+              <a class="position-relative" href="#" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
+                aria-controls="offcanvasRight">
+                <p>Mi cuenta</p>
               </a>
-              <a class=" position-relative " href="" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
+
+              <a class="position-relative" href="#" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
                 aria-controls="offcanvasRight">
                 <p class="fs-4">
                   <i class="fa-solid fa-shopping-cart"></i>
@@ -118,10 +88,10 @@
 
   </header>
 
-  <main>
+  <main>    
     <!-- Carousel -->
     <section>
-      <div class="container-xxl my-2 carousel-dss content ">
+      <div class="container-xxl my-2 carousel-dss">
         <div id="carouselExampleDark" class="carousel carousel-fade carousel-dark slide " data-bs-ride="carousel">
           <div class="carousel-indicators">
             <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active"
@@ -151,6 +121,7 @@
               </div>
             </div>
           </div>
+
           <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark"
             data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -166,13 +137,17 @@
       </div>
     </section>
     <!-- Galery products -->
-    <section class="products">
-      <div class="container-xxl p-3 my-3">
-        <div class="d-flex product-title pb-4">
-          <h1 class=" text-center  m-auto text-break">NOVEDADES</h1>
-        </div>
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-4 loader-page" id="productSection"></div>
+    <section>
+      <div class="products">
+        <div class="container-xxl p-3 my-3">
+          <div class="d-flex product-title pb-4">
+            <h1 class=" text-center  m-auto text-break">NOVEDADES</h1>
+          </div>
+
+          <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-4" id="productSection"></div>
+
     </section>
+
   </main>
 
 
@@ -184,24 +159,48 @@
   <!-- canvas car-->
   <div class="offcanvas offcanvas-end overflow-auto pb-4 " tabindex="-1" id="offcanvasRight"
     aria-labelledby="offcanvasRightLabel">
-    <div class="offcanvas-header">
-      <h3 id="offcanvasRightLabel">Carrito</h3>
-      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-    </div>
-    <div>
-      <div class="offcanvas-body" id="carritoContenedor">
+
+    <nav>
+      <div class="nav nav-tabs fs-5" id="nav-tab" role="tablist">
+        <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button"
+          role="tab" aria-controls="nav-home" aria-selected="true">
+          <p>Carrito</p>
+        </button>
+        <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button"
+          role="tab" aria-controls="nav-profile" aria-selected="false">
+          <p>Mi cuenta</p>
+        </button>
+        <div class="offcanvas-header">
+          <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
       </div>
-      <div class="d-flex flex-column col-9 mx-auto gap-2">
-        <span class="fs-5 m-auto" id="precioTotal">DSS</span>
-        <button class="btn btn-outline-dark btn-custom fs-5 disabled" id="btnPay">Médios de pago</button>
-        <p class="fs-2 text-center">
-          <i class="fa-brands fa-cc-paypal"></i>
-          <i class="fa-brands fa-cc-visa "></i>
-          <i class="fa-brands fa-cc-mastercard"></i>
-          <i class="fa-brands fa-cc-amex"></i>
-          <i class="fa-brands fa-cc-diners-club"></i>
-          <i class="fa-brands fa-cc-discover"></i>
-        </p>
+    </nav>
+    <div class="tab-content" id="nav-tabContent">
+      <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+
+        <div class="offcanvas-body" id="cartContainer"></div>
+        <div class="d-flex flex-column col-9 mx-auto gap-2">
+          <span class="fs-5 m-auto" id="precioTotal">DSS</span>
+          <button class="btn btn-outline-dark btn-custom fs-5 disabled" id="btnPay">Médios de pago</button>
+          <p class="fs-2 text-center">
+            <i class="fa-brands fa-cc-paypal"></i>
+            <i class="fa-brands fa-cc-visa "></i>
+            <i class="fa-brands fa-cc-mastercard"></i>
+            <i class="fa-brands fa-cc-amex"></i>
+            <i class="fa-brands fa-cc-diners-club"></i>
+            <i class="fa-brands fa-cc-discover"></i>
+          </p>
+        </div>
+
+      </div>
+      <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+        <div class="offcanvas-body" id="profileContainer">
+          <div class="accordion" id="accordionItems">
+            <a class="text-center" href="#loginModal" data-bs-toggle="modal">
+              <p>Ingresar o registrarse</p>
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -211,38 +210,60 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Iniciar sesión</h5>
+          <h5 class="modal-title" id="modalTitle">Registro</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form>
-            <div class="form-group">
-              <input type="text" name="username" id="username" placeholder="Usuario">
+          <form class="was-validated" id="registerForm">
+            <div class="mb-3">
+              <input class="form-control mb-0" type="text" name="username" placeholder="Nombre de usuario" minlength="3"
+                required>
+              <div class="invalid-feedback ">
+                Por favor ingrese un usuario.
+              </div>
             </div>
-            <div class="form-group">
-              <input type="password" name="password" id="password" placeholder="Contraseña">
+
+            <div class="mb-3">
+              <input class="form-control mb-0" type="email" name="email" placeholder="Correo electrónico" required>
+              <div class="invalid-feedback">
+                Por favor ingrese su correo electrónico.
+              </div>
             </div>
-            <button data-bs-dismiss="modal" type="button" class="btn btn-outline-dark btn-custom btn-block"
-              id="loginButton">Iniciar
-              sesión</button>
-          </form>
+            <div class="mb-3">
+              <input class="form-control mb-0" type="password" autocomplete="password" id="password"
+                placeholder="Contraseña" minlength="6" required>
+              <div class="invalid-feedback">
+                Por favor ingrese una contraseña min 6 caracteres.
+              </div>
+            </div>
+            <div class="d-flex flex-row justify-content-between align-items-center">
+              <button class="btn btn-outline-dark btn-custom btn-block" id="registerButton">Registarse</button>
+              <a class="visually-hidden" href="#" id="activeBtnRegister">
+                <p><i class="fas fa-caret-left"></i> Registrarse</p>
+              </a>
+              <button class="btn btn-outline-dark btn-custom btn-block visually-hidden" id="loginButton">Ingresar
+              </button>
+              <a href="#" id="activeBtnLogin">
+                <p>Ingresar <i class="fas fa-caret-right"></i></p>
+              </a>
+            </div>
         </div>
+        </form>
       </div>
     </div>
   </div>
+  </div>
+
 
   <!-- modal product -->
   <div id="productModal"></div>
-
-
+  <script type="module" src="/src/main.ts" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
     integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"
     defer></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
     integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"
     defer></script>
-
-  <script type="module" src="/src/main.ts" defer></script>
 </body>
 
 </html>
