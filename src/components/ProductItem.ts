@@ -3,8 +3,10 @@ import productData from "../data/products.json";
 import { ProductEntry } from "../types";
 import { increaseCartQuantity } from "../context/ShopingCartContext";
 import StoreItem from "./ProductDetail";
+import { fomatCurrency } from "../utilities/formatcurrency";
 
 const listProduct = document.querySelector<HTMLDivElement>("#productSection")!;
+const activatecart = document.querySelector<HTMLButtonElement>("#activateCart")!;
 const products: ProductEntry[] = productData as ProductEntry[];
 
 export function ProductItem() {
@@ -36,8 +38,8 @@ export function ProductItem() {
 
     /*** product price ***/
     const spanPrice = document.createElement("span");
-    spanPrice.innerText = "$ " + product.price.toString();
-    spanPrice.className = "fs-5";
+    spanPrice.innerText = fomatCurrency(product.price).toString();
+    spanPrice.className = "fs-6";
 
     /*** product score ***/
     const ratings = document.createElement("div");
@@ -56,6 +58,7 @@ export function ProductItem() {
 
     btnAddCart.addEventListener("click", () => {
       increaseCartQuantity(product._id);
+      activatecart.click()
     });
 
     const iconCart = document.createElement("i");

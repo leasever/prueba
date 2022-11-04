@@ -4,6 +4,7 @@ import { Cart } from "../types";
 import { increaseCartQuantity, decreaseCartQuantity, removeFromCart } from "../context/ShopingCartContext";
 import { paymentRegister } from "../context/PaymentRegister";
 import { getSessionStorage } from "../hooks/useLocalStore";
+import { fomatCurrency } from "../utilities/formatcurrency";
 
 const cartcontainer = document.querySelector<HTMLDivElement>("#cartContainer")!;
 const spanTotal = document.querySelector<HTMLSpanElement>("#precioTotal")!;
@@ -63,11 +64,11 @@ export function CartItem(cartList: Cart[]) {
     /*** product price ***/
     const divPrice = document.createElement("div");
     divPrice.className = "text-muted price-cart";
-    divPrice.innerText = "$ " + product.price.toString();
+    divPrice.innerText = fomatCurrency(product.price).toString();
 
     /*** product subtotal ***/
     const divSubTotal = document.createElement("div");
-    divSubTotal.innerText = "$ " + (product.price * item.quantity).toString();
+    divSubTotal.innerText = fomatCurrency(product.price * item.quantity).toString();
     total += product.price * item.quantity;
 
     const divbtns = document.createElement("div");
@@ -130,7 +131,7 @@ export function CartItem(cartList: Cart[]) {
     divItemProduct.append(enlaceModal);
     divItemProduct.append(divWrap);
 
-    spanTotal.innerText = "Total : $ " + total.toString();
+    spanTotal.innerText = "Total " + fomatCurrency(total).toString();
 
     btnPayment.innerText = "Pagar";
     btnPayment.classList.remove("disabled");

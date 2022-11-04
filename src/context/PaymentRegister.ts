@@ -19,7 +19,7 @@ export async function paymentRegister() {
     date: new Date(),
     items: cartlist,
   });
-  console.log(userconnected.purchase)
+    
   useSessionStorage<UserConnected>("user", userconnected);
   navprofiletab.click();  
   

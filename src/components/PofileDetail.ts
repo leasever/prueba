@@ -1,5 +1,6 @@
 import productData from "../data/products.json";
 import { ProductEntry, UserConnected } from "../types";
+import { fomatCurrency } from "../utilities/formatcurrency";
 
 const products: ProductEntry[] = productData as ProductEntry[];
 
@@ -73,7 +74,7 @@ export function profileDetailPurchase(userconnected: UserConnected) {
         <tr class="text-end"> 
           <td></td>           
           <td class="fw-bolder">Total: </td>
-          <td>$ ${total}</td>
+          <td>${fomatCurrency(total)}</td>
         </tr>   
       </tfoot>`;
 
