@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DSS - Store</title>
+  <link rel="icon" type="image/svg+xml" href="" />
+  <meta name="description" content="Productos originales y de la mejor calidad">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+    integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  
+  <script type="module" crossorigin src="/shoppingCart-typeScript/assets/index.aa326614.js"></script>
+  <link rel="stylesheet" href="/shoppingCart-typeScript/assets/index.6dd0e8ef.css">
+</head>
+
+<body>
+
+  <header>
+    <!-- Tospan header -->
+    <!-- Nav -->
+    <div class="shadow-sm  header-stiky " id="myHeader">
+      <div class="container-xxl px-4 ">
+        <nav class="navbar navbar-expand-md navbar-light">
+          <a class="navbar-brand" href="/" aria-label="Logo dss">
+            <div class="main-logo"></div>
+          </a>
+          <button class="navbar-toggler justify-content-end" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+            <ul class="navbar-nav me-auto mb-2 mb-md-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/">Store</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#product-section">Novedades</a>
+              </li>
+              <li class="nav-item dropdown ">
+                <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                  aria-expanded="false">
+                  Categorías
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li><a class="dropdown-item" href="#product-section">Electrónicos</a></li>
+                  <li><a class="dropdown-item" href="#product-section">Mascotas</a></li>
+                  <li><a class="dropdown-item" href="#product-section">Hogar</a></li>
+                </ul>
+              </li>
+            </ul>
+            <form class="d-flex col-md-5">
+              <div class="input-group ">
+                <input type="text" class="form-control " placeholder="Buscar..." aria-label="Recipient's username"
+                  aria-describedby="button-addon2" id="buscar" required>
+                <button class="btn btn-outline-secondary btn-custom" type="submit" id="button-addon2"
+                  aria-label="Search">
+                  <p>
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                  </p>
+                </button>
+              </div>
+            </form>
+            <hr class="dropdown-divider ">
+            <div class="login-bag d-flex  gap-3 align-items-center justify-content-end  ps-md-4 py-md-0">
+              <a class="position-relative" id="activateProfile" href="#" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
+                aria-controls="offcanvasRight" >
+                <p>Mi cuenta</p>
+              </a>
+
+              <a class="position-relative" id="activateCart" href="#" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
+                aria-controls="offcanvasRight">
+                <p class="fs-4">
+                  <i class="fa-solid fa-shopping-cart"></i>
+                </p>
+                <span class="position-absolute  top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                  id="contadorCarrito">
+                  0
+                </span>
+              </a>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </div>
+
+  </header>
+  <div class="loader-page" id="loaderSection"></div>
+  <main>
+    <!-- Carousel -->
+    <section>
+      <div class="container-xxl my-2 carousel-dss">
+        <div id="carouselExampleDark" class="carousel carousel-fade carousel-dark slide " data-bs-ride="carousel">
+          <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active"
+              aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1"
+              aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2"
+              aria-label="Slide 3"></button>
+          </div>
+          <div class="carousel-inner">
+            <div class="carousel-item active" data-bs-interval="3000">
+              <img src="/shoppingCart-typeScript/assets/banner1.40e2363a.jpg" class="d-block w-100 img-thumbnail" alt="Mascotas">
+              <div class="carousel-caption d-none d-md-block">
+                <h4 class=" text-white opacity-75">MASCOTAS</h4>
+              </div>
+            </div>
+            <div class="carousel-item" data-bs-interval="2000">
+              <img src="/shoppingCart-typeScript/assets/banner2.583abe06.jpg" class="d-block w-100 img-thumbnail" alt="Electrónicos">
+              <div class="carousel-caption d-none d-md-block">
+                <h4 class="text-white opacity-75">ELECTRO</h4>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <img src="/shoppingCart-typeScript/assets/banner3.652ee5a4.jpg" class="d-block w-100 img-thumbnail" alt="Hogar">
+              <div class="carousel-caption d-none d-md-block">
+                <h4 class="text-white opacity-75">HOGAR</h4>
+              </div>
+            </div>
+          </div>
+
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark"
+            data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark"
+            data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+
+      </div>
+    </section>
+    <!-- Galery products -->
+    <section>
+      <div class="products" name="product-section" id="product-section">
+        <div class="container-xxl p-3 my-3">
+          <div class="d-flex product-title pb-4">
+            <h1 class=" text-center  m-auto text-break">NOVEDADES</h1>
+          </div>
+          <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-4 col-xl-10 m-auto justify-content-between" id="productSection">
+            
+          </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- footer -->
+  <footer>
+    <p>&copy; Todos los derechos reservados</p>
+  </footer>
+
+  <!-- canvas car-->
+  <div class="offcanvas offcanvas-end overflow-auto pb-4 " tabindex="-1" id="offcanvasRight"
+    aria-labelledby="offcanvasRightLabel">
+    <nav>
+      <div class="nav nav-tabs fs-5" id="nav-tab" role="tablist">
+        <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button"
+          role="tab" aria-controls="nav-home" aria-selected="true">
+          <p>Carrito</p>
+        </button>
+        <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button"
+          role="tab" aria-controls="nav-profile" aria-selected="false">
+          <p>Mi cuenta</p>
+        </button>
+        <div class="offcanvas-header">
+          <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+      </div>
+    </nav>
+    <div class="tab-content" id="nav-tabContent">
+      <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+
+        <div class="offcanvas-body" id="cartContainer"></div>
+        <div class="d-flex flex-column col-9 mx-auto gap-2">
+          <span class="fs-5 m-auto" id="precioTotal">DSS</span>
+          <button class="btn btn-outline-dark btn-custom fs-5 disabled" id="btnPay">Médios de pago</button>
+          <p class="fs-2 text-center">
+            <i class="fa-brands fa-cc-paypal"></i>
+            <i class="fa-brands fa-cc-visa "></i>
+            <i class="fa-brands fa-cc-mastercard"></i>
+            <i class="fa-brands fa-cc-amex"></i>
+            <i class="fa-brands fa-cc-diners-club"></i>
+            <i class="fa-brands fa-cc-discover"></i>
+          </p>
+        </div>
+
+      </div>
+      <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+        <div class="offcanvas-body" id="profileContainer">
+          <div class="accordion" id="accordionItems">
+            <a class="text-center" href="#loginModal" id="loginRegisterModal" data-bs-toggle="modal">
+              <p>Ingresar o registrarse</p>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- modal login -->
+  <div class="modal fade login-modal" id="loginModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalTitle">Registro</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form class="was-validated" id="registerForm">
+            <div class="mb-3">
+              <input class="form-control mb-0" type="text" name="username" placeholder="Nombre de usuario" minlength="3"
+               maxlength="20" required>
+              <div class="invalid-feedback ">
+                Por favor ingrese un usuario mín. 3 y máx 20 caracteres.
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <input class="form-control mb-0" type="email" name="email" placeholder="Correo electrónico" required>
+              <div class="invalid-feedback">
+                Por favor ingrese su correo electrónico.
+              </div>
+            </div>
+            <div class="mb-3">
+              <input class="form-control mb-0" type="password" autocomplete="password" id="password"
+                placeholder="Contraseña"  pattern=".{8,}" required>
+              <div class="invalid-feedback">
+                Por favor ingrese una contraseña mín 8 caracteres.
+              </div>
+            </div>
+            <div class="d-flex flex-row justify-content-between align-items-center">
+              <button class="btn btn-outline-dark btn-custom btn-block" id="registerButton">Registarse</button>
+              <a class="visually-hidden" role="button" id="activeBtnRegister">
+                <p><i class="fas fa-caret-left"></i> Registrarse</p>
+              </a>
+              <button class="btn btn-outline-dark btn-custom btn-block visually-hidden" id="loginButton">Ingresar
+              </button>
+              <a role="button" id="activeBtnLogin">
+                <p>Ingresar <i class="fas fa-caret-right"></i></p>
+              </a>
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="formModalClose" hidden>Close</button>
+            </div>
+        </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  </div>
+
+
+  <!-- modal product -->
+  <div id="productModal" ></div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
+    integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"
+    defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+    integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"
+    defer></script>
+</body>
+
+</html>
