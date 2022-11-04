@@ -18,3 +18,6 @@ export function getSessionStorage(key: string) {
   return JSON.parse(sessionStorage.getItem(key)!);
 }
 
+export function removeSessionStorage(key: string) {
+  sessionStorage.removeItem(key)
+}

@@ -56,7 +56,7 @@ export function removeFromCart(_id: number) {
   checkIconAdded(_id, false);
 }
 
-function checkIconAdded(_id: number, condition: boolean) {
+export function checkIconAdded(_id: number, condition: boolean) {
   const iconAdded = document.querySelector<HTMLButtonElement>("#icon" + _id)!;
   if (condition) {
     iconAdded.className = "fas fa-check-circle ms-1";

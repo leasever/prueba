@@ -1,19 +1,18 @@
 import "./css/main.css";
 import { ProductItem } from "../src/components/ProductItem";
 import { shopingCartContext } from "./context/ShopingCartContext";
-import { getLocalStorage, getSessionStorage } from "./hooks/useLocalStore";
-import { userRegisterContext } from "./context/UserRegisterContext";
-import { profileModal } from "./components/Profile";
-import 'moment/locale/es';
+import { getLocalStorage } from "./hooks/useLocalStore";
+import { validatorUserConnected } from "./utilities/validatorUser";
 
 const sectloader = document.querySelector<HTMLDivElement>("#loaderSection")!;
 
 document.addEventListener("DOMContentLoaded", () => {
   ProductItem();
   if (getLocalStorage("carrito")) shopingCartContext();
+  validatorUserConnected()
 });
 window.onload = () => {
   sectloader.setAttribute("style", "visibility:hidden; opacity:0;");
-  if (getLocalStorage("users")) userRegisterContext();
-  if (getSessionStorage("user")) profileModal(getSessionStorage("user"));
 };
+
+

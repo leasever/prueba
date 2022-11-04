@@ -1,48 +1,56 @@
 import { Cart, User, UserConnected } from "../types";
-import { getSessionStorage, getLocalStorage, useSessionStorage, useLocalStorage, removeLocalStorage } from "../hooks/useLocalStore";
+import { getSessionStorage, getLocalStorage, useSessionStorage, useLocalStorage } from "../hooks/useLocalStore";
 import { encrypt, decrypt } from "../utilities/crypted";
 import { v4 } from "uuid";
+import { profileModal } from "../components/ProfileItem";
+import { ProductItem } from "../components/ProductItem";
+import { shopingCartContext } from "./ShopingCartContext";
 
+const navprofiletab = document.querySelector<HTMLButtonElement>("#nav-profile-tab")!;
 
 export async function paymentRegister() {
-  let cartlist: Cart[] = getLocalStorage("carrito");
-  let userconnected: UserConnected = getSessionStorage("user");
-  let users: User[]  = getLocalStorage("users");
+  const cartlist: Cart[] = getLocalStorage("carrito");
+  const userconnected: UserConnected = getSessionStorage("user");
+  const users: User[] = getLocalStorage("users");
 
+  /*** user connected ***/
   userconnected.purchase.push({
     _id: v4(),
     date: new Date(),
     items: cartlist,
-  })
+  });
+  console.log(userconnected.purchase)
   useSessionStorage<UserConnected>("user", userconnected);
- 
-  const pass = await decrypt(userconnected.email, userconnected.password);
+  navprofiletab.click();  
+  
+  /*** user update ***/
+  const hash = await decrypt(userconnected.email, userconnected._id);
   const userencryted = await encrypt(
-    pass,
+    hash,
     JSON.stringify({
       email: userconnected.email,
       username: userconnected.username,
-      password: userconnected.password,
-      purchase: userconnected.purchase
+      _id: userconnected._id,
+      purchase: userconnected.purchase,
     }),
   );
 
- const updUsers =  users.map((user) => {
-   if (user.email === userconnected.email) {
-      console.log(user)
-      return { ...user, user: userencryted }
+  const updUsers = users.map((user) => {
+    if (user.email === userconnected.email) {
+      return { ...user, user: userencryted };
     } else {
       return user
     }
-  })
+  });
 
-  updateUsers(updUsers)
-  alert('Gracias por su compra ' + userconnected.username)
+  updateUsers(updUsers);
+  alert("Gracias por su compra " + userconnected.username);
+  profileModal(userconnected);
 }
 
 function updateUsers(users: User[]) {
+  ProductItem();
   useLocalStorage<User[]>("users", users);
-  removeLocalStorage("carrito")    
-  location.reload()
+  useLocalStorage<Cart[]>("carrito", []);
+  shopingCartContext();
 }
-// function update

@@ -2,16 +2,16 @@ import Rating from "../utilities/rating";
 import productData from "../data/products.json";
 import { ProductEntry } from "../types";
 import { increaseCartQuantity } from "../context/ShopingCartContext";
-import StoreItem from "./ProductModal";
+import StoreItem from "./ProductDetail";
 
-const listProduct = document.querySelector<HTMLDivElement>("#productSection");
+const listProduct = document.querySelector<HTMLDivElement>("#productSection")!;
 const products: ProductEntry[] = productData as ProductEntry[];
 
 export function ProductItem() {
+  listProduct.innerHTML = ` `;
   products.forEach((product) => {
     const productElement = document.createElement("div");
     productElement.className = "col";
-
     /*** card product ***/
     const divCardProduct = document.createElement("div");
     divCardProduct.className = "card";
@@ -61,7 +61,7 @@ export function ProductItem() {
     const iconCart = document.createElement("i");
     iconCart.className = "fa-solid fa-shopping-cart";
 
-    /*** injection html ***/
+    /*** insert html ***/
     nameProduct.append(spanPrice);
 
     bodyCard.append(nameProduct);
@@ -79,6 +79,7 @@ export function ProductItem() {
     divCardProduct.append(btnDiv);
 
     productElement.append(divCardProduct);
+
     listProduct?.append(productElement);
   });
 }

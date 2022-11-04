@@ -3,7 +3,7 @@ import { v4 } from "uuid";
 import { useLocalStorage, getLocalStorage, useSessionStorage } from "../hooks/useLocalStore";
 import { encrypt, decrypt } from "../utilities/crypted";
 import { activateButtonLogin, activateButtonRegister } from "../utilities/validatorForm";
-import { profileModal } from "../components/Profile";
+import { profileModal } from "../components/ProfileItem";
 
 let users: User[] = [];
 let purchase: Purchase[] = [];
@@ -16,6 +16,8 @@ const password = <HTMLInputElement>registerFrom["password"];
 
 const btnlogin = document.querySelector<HTMLButtonElement>("#loginButton")!;
 const btnregister = document.querySelector<HTMLButtonElement>("#registerButton")!;
+const btnclosemodal = document.querySelector<HTMLButtonElement>("#formModalClose")!;
+
 
 export function userRegisterContext() {
   users = getLocalStorage("users");
@@ -36,7 +38,7 @@ btnregister.addEventListener("click", async (e) => {
         JSON.stringify({
           email: email.value,
           username: username.value,
-          password: passencrypted,
+          _id: passencrypted,
           purchase,
         }),
       );
@@ -48,8 +50,11 @@ btnregister.addEventListener("click", async (e) => {
 btnlogin.addEventListener("click", (e) => {
   e.preventDefault();
   const checkusers = users.find((user) => user.email === email.value)!;
-  loggedIn(password.value, checkusers?.user);
-  console.log("login ", password.value, checkusers?.user);
+  if (checkusers) {
+    loggedIn(password.value, checkusers.user);
+  }else{
+    alert(email.value + " no registrada")
+  }  
 });
 
 function UserRegister(userencryted: string) {
@@ -66,13 +71,11 @@ function UserRegister(userencryted: string) {
 async function loggedIn(password: string, user: string) {
   try {
     userconnected = JSON.parse(await decrypt(password, user));
-    console.log("userdecrypt ", userconnected);
     if (userconnected) {
-      console.log("entro al aler de userdecript ", userconnected);
       useSessionStorage<UserConnected>("user", userconnected);
-      profileModal(userconnected);
       alert("Bienvenido " + userconnected.username);
-      location.reload()
+      btnclosemodal.click()
+      profileModal(userconnected);
     }
   } catch (error) {
     alert("Usuario y/o contraseña incorrectas");

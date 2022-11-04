@@ -3,19 +3,22 @@ import { ProductEntry } from "../types";
 import { Cart } from "../types";
 import { increaseCartQuantity, decreaseCartQuantity, removeFromCart } from "../context/ShopingCartContext";
 import { paymentRegister } from "../context/PaymentRegister";
-
+import { getSessionStorage } from "../hooks/useLocalStore";
 
 const cartcontainer = document.querySelector<HTMLDivElement>("#cartContainer")!;
 const spanTotal = document.querySelector<HTMLSpanElement>("#precioTotal")!;
 const btnPayment = document.querySelector<HTMLButtonElement>("#btnPay")!;
 const countItems = document.querySelector<HTMLSpanElement>("#contadorCarrito")!;
+const loginregistermodal = document.querySelector<HTMLButtonElement>("#loginRegisterModal")!;
 
 const products: ProductEntry[] = productData as ProductEntry[];
+
 export function CartItem(cartList: Cart[]) {
   let total: number = 0;
   let count: number = 0;
 
   if (cartList.length === 0) {
+    cartcontainer.innerHTML = ``;
     spanTotal.innerText = "DSS";
     btnPayment.innerText = "Médios de pago";
     btnPayment.classList.add("disabled");
@@ -70,7 +73,7 @@ export function CartItem(cartList: Cart[]) {
     const divbtns = document.createElement("div");
     divbtns.className = "d-flex flex-wrap gap-1 col-12";
 
-    /*** button - ***/
+    /*** button decrease ***/
     const btnDecrease = document.createElement("button");
     btnDecrease.type = "button";
     btnDecrease.className = "btn btn-outline-primary icon-cart";
@@ -79,11 +82,12 @@ export function CartItem(cartList: Cart[]) {
     });
     const iconDecrease = document.createElement("i");
     iconDecrease.className = "fas fa-minus";
+
     /*** button remove item ***/
     const btnRemove = document.createElement("button");
     btnRemove.type = "button";
     btnRemove.className = "btn btn-danger icon-cart";
-    btnRemove.addEventListener("click", (): void => {
+    btnRemove.addEventListener("click", () => {
       if (confirm("Desea eliminar el producto: " + product?.name)) {
         removeFromCart(item._id);
       }
@@ -92,17 +96,17 @@ export function CartItem(cartList: Cart[]) {
     const iconRemove = document.createElement("i");
     iconRemove.className = "fas fa-trash-alt";
 
-    /*** button + ***/
+    /*** button increase ***/
     const btnIncrease = document.createElement("button");
     btnIncrease.type = "button";
     btnIncrease.className = "btn btn-outline-primary icon-cart";
-    btnIncrease.addEventListener("click", (): void => {
+    btnIncrease.addEventListener("click", () => {
       increaseCartQuantity(item._id);
     });
     const iconIncrease = document.createElement("i");
     iconIncrease.className = "fas fa-plus";
 
-    /*** injection html ***/
+    /*** insert html ***/
     btnDecrease.append(iconDecrease);
     btnRemove.append(iconRemove);
     btnIncrease.append(iconIncrease);
@@ -134,7 +138,11 @@ export function CartItem(cartList: Cart[]) {
     return cartcontainer?.append(divItemProduct);
   });
 }
-btnPayment.addEventListener("click", (e) => {
-  e.preventDefault()
-  paymentRegister(); 
+btnPayment.addEventListener("click", () => {
+  if (getSessionStorage("user")) {
+    paymentRegister();
+  } else {
+    alert("Registrese o inicie sesión para completar la venta");
+    loginregistermodal.click();
+  }
 });

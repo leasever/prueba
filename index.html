@@ -14,14 +14,14 @@
 </head>
 
 <body>
-  <div class="loader-page" id="loaderSection"></div>
+
   <header>
     <!-- Tospan header -->
     <!-- Nav -->
     <div class="shadow-sm  header-stiky " id="myHeader">
       <div class="container-xxl px-4 ">
         <nav class="navbar navbar-expand-md navbar-light">
-          <a class="navbar-brand" href="#" aria-label="Logo dss">
+          <a class="navbar-brand" href="/" aria-label="Logo dss">
             <div class="main-logo"></div>
           </a>
           <button class="navbar-toggler justify-content-end" type="button" data-bs-toggle="collapse"
@@ -32,23 +32,21 @@
           <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
             <ul class="navbar-nav me-auto mb-2 mb-md-0">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Store</a>
+                <a class="nav-link active" aria-current="page" href="/">Store</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Novedades</a>
+                <a class="nav-link" href="#product-section">Novedades</a>
               </li>
               <li class="nav-item dropdown ">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
                   aria-expanded="false">
                   Categorías
                 </a>
-
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <li><a class="dropdown-item" href="#">Electrónicos</a></li>
-                  <li><a class="dropdown-item" href="#">Mascotas</a></li>
-                  <li><a class="dropdown-item" href="#">Hogar</a></li>
+                  <li><a class="dropdown-item" href="#product-section">Electrónicos</a></li>
+                  <li><a class="dropdown-item" href="#product-section">Mascotas</a></li>
+                  <li><a class="dropdown-item" href="#product-section">Hogar</a></li>
                 </ul>
-
               </li>
             </ul>
             <form class="d-flex col-md-5">
@@ -65,12 +63,12 @@
             </form>
             <hr class="dropdown-divider ">
             <div class="login-bag d-flex  gap-3 align-items-center justify-content-end  ps-md-4 py-md-0">
-              <a class="position-relative" href="#" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
-                aria-controls="offcanvasRight">
+              <a class="position-relative" id="activateProfile" href="#" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
+                aria-controls="offcanvasRight" >
                 <p>Mi cuenta</p>
               </a>
 
-              <a class="position-relative" href="#" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
+              <a class="position-relative" id="activateCart" href="#" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
                 aria-controls="offcanvasRight">
                 <p class="fs-4">
                   <i class="fa-solid fa-shopping-cart"></i>
@@ -87,8 +85,8 @@
     </div>
 
   </header>
-
-  <main>    
+  <div class="loader-page" id="loaderSection"></div>
+  <main>
     <!-- Carousel -->
     <section>
       <div class="container-xxl my-2 carousel-dss">
@@ -138,13 +136,14 @@
     </section>
     <!-- Galery products -->
     <section>
-      <div class="products">
+      <div class="products" name="product-section" id="product-section">
         <div class="container-xxl p-3 my-3">
           <div class="d-flex product-title pb-4">
             <h1 class=" text-center  m-auto text-break">NOVEDADES</h1>
           </div>
-
-          <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-4" id="productSection"></div>
+          <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-4 col-xl-10 m-auto justify-content-between" id="productSection">
+            
+          </div>
 
     </section>
 
@@ -159,7 +158,6 @@
   <!-- canvas car-->
   <div class="offcanvas offcanvas-end overflow-auto pb-4 " tabindex="-1" id="offcanvasRight"
     aria-labelledby="offcanvasRightLabel">
-
     <nav>
       <div class="nav nav-tabs fs-5" id="nav-tab" role="tablist">
         <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button"
@@ -196,7 +194,7 @@
       <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
         <div class="offcanvas-body" id="profileContainer">
           <div class="accordion" id="accordionItems">
-            <a class="text-center" href="#loginModal" data-bs-toggle="modal">
+            <a class="text-center" href="#loginModal" id="loginRegisterModal" data-bs-toggle="modal">
               <p>Ingresar o registrarse</p>
             </a>
           </div>
@@ -217,9 +215,9 @@
           <form class="was-validated" id="registerForm">
             <div class="mb-3">
               <input class="form-control mb-0" type="text" name="username" placeholder="Nombre de usuario" minlength="3"
-                required>
+               maxlength="20" required>
               <div class="invalid-feedback ">
-                Por favor ingrese un usuario.
+                Por favor ingrese un usuario mín. 3 y máx 20 caracteres.
               </div>
             </div>
 
@@ -231,21 +229,22 @@
             </div>
             <div class="mb-3">
               <input class="form-control mb-0" type="password" autocomplete="password" id="password"
-                placeholder="Contraseña" minlength="6" required>
+                placeholder="Contraseña"  pattern=".{8,}" required>
               <div class="invalid-feedback">
-                Por favor ingrese una contraseña min 6 caracteres.
+                Por favor ingrese una contraseña mín 8 caracteres.
               </div>
             </div>
             <div class="d-flex flex-row justify-content-between align-items-center">
               <button class="btn btn-outline-dark btn-custom btn-block" id="registerButton">Registarse</button>
-              <a class="visually-hidden" href="#" id="activeBtnRegister">
+              <a class="visually-hidden" role="button" id="activeBtnRegister">
                 <p><i class="fas fa-caret-left"></i> Registrarse</p>
               </a>
               <button class="btn btn-outline-dark btn-custom btn-block visually-hidden" id="loginButton">Ingresar
               </button>
-              <a href="#" id="activeBtnLogin">
+              <a role="button" id="activeBtnLogin">
                 <p>Ingresar <i class="fas fa-caret-right"></i></p>
               </a>
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="formModalClose" hidden>Close</button>
             </div>
         </div>
         </form>
@@ -256,7 +255,7 @@
 
 
   <!-- modal product -->
-  <div id="productModal"></div>
+  <div id="productModal" ></div>
   <script type="module" src="/src/main.ts" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
     integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"
