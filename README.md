@@ -29,7 +29,7 @@
 
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://leasever.github.io/clean_code_ts_react/)
+[![Product Name Screen Shot][product-screenshot]](https://leasever.github.io/shoppingCart-typeScript/)
 
 Application in Typescript vanilla, data persistent, login and user register, shopping cart, data encryption.
 
