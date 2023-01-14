@@ -65,15 +65,7 @@ This is an example of how to list things you need to use the software and how to
    ```sh
    git clone https://github.com/leasever/shoppingCart-typeScript.git
    ```
-2. Install PNPM packages
-   ```sh
-   npm install
-   ```
-3. Install PNPM packages
-   ```sh
-   npm install
-   ```
-4. Install PNPM packages
+2. Install NPM packages
    ```sh
    npm install
    ```
