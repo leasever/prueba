@@ -14,7 +14,13 @@ const base64ToBuffer = function (buffer: string) {
 const encryptparameters = async function (crypted: Crypted) {
   const encoder = new TextEncoder();
   let algorithm = "AES-CBC";
-  let keyMaterial = await window.crypto.subtle.importKey("raw", encoder.encode(crypted.password), { name: "PBKDF2" }, false, ["deriveKey"]);
+  let keyMaterial = await window.crypto.subtle.importKey(
+    "raw",
+    encoder.encode(crypted.password),
+    { name: "PBKDF2" },
+    false,
+    ["deriveKey"]
+  );
   return await window.crypto.subtle.deriveKey(
     {
       name: "PBKDF2",
@@ -25,7 +31,7 @@ const encryptparameters = async function (crypted: Crypted) {
     keyMaterial,
     { name: algorithm, length: crypted.longitude },
     false,
-    ["encrypt", "decrypt"],
+    ["encrypt", "decrypt"]
   );
 };
 
@@ -33,7 +39,9 @@ const encryptparameters = async function (crypted: Crypted) {
 export async function encrypt(password: string, textPlane: string) {
   const encoder = new TextEncoder();
   const sal = window.crypto.getRandomValues(new Uint8Array(16));
-  const initializationVector = window.crypto.getRandomValues(new Uint8Array(16));
+  const initializationVector = window.crypto.getRandomValues(
+    new Uint8Array(16)
+  );
   const bufferTextPlane = encoder.encode(textPlane);
   const crypted = {
     password,
@@ -43,8 +51,16 @@ export async function encrypt(password: string, textPlane: string) {
     hash: "SHA-256",
   };
   const key = encryptparameters(crypted);
-  const encrypted = await window.crypto.subtle.encrypt({ name: "AES-CBC", iv: initializationVector }, await key, bufferTextPlane);
-  return bufferToBase64([...sal, ...initializationVector, ...new Uint8Array(encrypted)]);
+  const encrypted = await window.crypto.subtle.encrypt(
+    { name: "AES-CBC", iv: initializationVector },
+    await key,
+    bufferTextPlane
+  );
+  return bufferToBase64([
+    ...sal,
+    ...initializationVector,
+    ...new Uint8Array(encrypted),
+  ]);
 }
 
 /*** decrypt data ***/
@@ -52,7 +68,10 @@ export async function decrypt(password: string, encriptadoEnBase64: string) {
   const decoder = new TextDecoder();
   const dataencrypt = base64ToBuffer(encriptadoEnBase64);
   const sal = dataencrypt.slice(0, LONGITUDE_SAL);
-  const initializationVector = dataencrypt.slice(0 + LONGITUDE_SAL, LONGITUDE_SAL + INITIALIZATION_VECTOR_LONGITUDE);
+  const initializationVector = dataencrypt.slice(
+    0 + LONGITUDE_SAL,
+    LONGITUDE_SAL + INITIALIZATION_VECTOR_LONGITUDE
+  );
   const crypted = {
     password,
     sal,
@@ -61,6 +80,10 @@ export async function decrypt(password: string, encriptadoEnBase64: string) {
     hash: "SHA-256",
   };
   const key = encryptparameters(crypted);
-  const dataBuffer = await window.crypto.subtle.decrypt({ name: "AES-CBC", iv: initializationVector }, await key, dataencrypt.slice(LONGITUDE_SAL + INITIALIZATION_VECTOR_LONGITUDE));
+  const dataBuffer = await window.crypto.subtle.decrypt(
+    { name: "AES-CBC", iv: initializationVector },
+    await key,
+    dataencrypt.slice(LONGITUDE_SAL + INITIALIZATION_VECTOR_LONGITUDE)
+  );
   return decoder.decode(dataBuffer);
 }
