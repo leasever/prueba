@@ -4,7 +4,12 @@ export default function NavBar() {
   )!.innerHTML += `<div class="shadow-sm header-stiky" id="myHeader">
         <div class="container-xxl px-4">
           <nav class="navbar navbar-expand-md navbar-light">
-            <div class="main-logo"></div>
+            <div class="main-logo"  >
+              <img 
+              src="img/logo.png" 
+              alt="Logo dss"
+              loading="eager"/>
+            </div>
 
             <button
               class="navbar-toggler justify-content-end"

@@ -10196,12 +10196,8 @@ header .header-stiky {
   width: 100%;
 }
 header .main-logo {
-  background: url("/img/logo.png");
   height: 50px;
   width: 70px;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
 }
 header .login-bag a:hover {
   color: #590b11;

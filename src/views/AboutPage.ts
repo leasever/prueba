@@ -13,7 +13,7 @@ export default function AboutPage() {
                   src="img/about/boutique1.png"
                   alt="Imagen de Nosotros"
                   class="img-fluid rounded-circle mb-4 w-75"
-                  loading="lazy"
+                  loading="eager"
                 />
               </div>
               <div class="col-lg-6 col-md-6 col-12">
@@ -37,7 +37,7 @@ export default function AboutPage() {
                   src="img/about/boutique2.png"
                   alt="Imagen de Nosotros"
                   class="img-fluid rounded-circle mb-4 w-75"
-                  loading="lazy"
+                  loading="eager"
                 />
               </div>
               <div class="col-lg-6 col-md-6 col-12">
