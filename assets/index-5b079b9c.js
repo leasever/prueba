@@ -233,7 +233,7 @@
                   src="img/about/boutique2.png"
                   alt="Imagen de Nosotros"
                   class="img-fluid rounded-circle mb-4 w-75"
-                  loading="lazy"
+                  loading="eagler"
                 />
               </div>
               <div class="col-lg-6 col-md-6 col-12">
