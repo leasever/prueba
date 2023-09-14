@@ -1,11 +1,13 @@
 import productData from "../data/products.json";
 import { ProductEntry, UserConnected } from "../types";
-import { fomatCurrency } from "../utilities/formatcurrency";
-
+import { formatCurrency } from "../utilities/formatCurrency";
+import CanvaCard from "./CanvaCard";
+CanvaCard();
 const products: ProductEntry[] = productData as ProductEntry[];
 
 export function profileDetailPurchase(userconnected: UserConnected) {
-  const purchaseDetails = document.querySelector<HTMLDivElement>("#divAccordion")!;
+  const purchaseDetails =
+    document.querySelector<HTMLDivElement>("#divAccordion")!;
 
   userconnected.purchase.reverse().map((compra, index) => {
     const h2accordionheader = document.createElement("h2");
@@ -20,7 +22,7 @@ export function profileDetailPurchase(userconnected: UserConnected) {
     accordionbutton.setAttribute("aria-expanded", "true");
     accordionbutton.setAttribute("aria-controls", "colpase" + index);
 
-    const datespanish = new Date(compra.date).toLocaleDateString(undefined, {
+    const datespanish = new Date(compra.date).toLocaleDateString("es-ES", {
       weekday: "short",
       year: "numeric",
       month: "long",
@@ -54,7 +56,9 @@ export function profileDetailPurchase(userconnected: UserConnected) {
     `;
     let total = 0;
     for (let i = 0; i < compra.items.length; i++) {
-      const product = products.find((product) => product._id === compra.items[i]["_id"])!;
+      const product = products.find(
+        (product) => product._id === compra.items[i]["_id"]
+      )!;
       total += compra.items[i]["quantity"] * product.price;
       tableproduct.innerHTML += `          
         <tbody>
@@ -65,7 +69,9 @@ export function profileDetailPurchase(userconnected: UserConnected) {
               </a>
             </td>
             <td class="text-end">${product.price}</td>
-            <td class="text-end">${compra.items[i]["quantity"] * product.price}</td>
+            <td class="text-end">${
+              compra.items[i]["quantity"] * product.price
+            }</td>
           </tr>    
         </tbody>`;
     }
@@ -74,7 +80,7 @@ export function profileDetailPurchase(userconnected: UserConnected) {
         <tr class="text-end"> 
           <td></td>           
           <td class="fw-bolder">Total: </td>
-          <td>${fomatCurrency(total)}</td>
+          <td>${formatCurrency(total)}</td>
         </tr>   
       </tfoot>`;
 

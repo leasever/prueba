@@ -1,9 +1,13 @@
 export default function rating(rating: number) {
-  return `
-  <i class=${rating >= 1 ? "'fas  fa-star'" : rating >= 0.5 ? "'fas fa-star-half-alt'" : "'far fa-star'"}></i>
-  <i class=${rating >= 2 ? "'fas fa-star'" : rating >= 1.5 ? "'fas fa-star-half-alt'" : "'far fa-star'"}></i>
-  <i class=${rating >= 3 ? "'fas fa-star'" : rating >= 2.5 ? "'fas fa-star-half-alt'" : "'far fa-star'"}></i>
-  <i class=${rating >= 4 ? "'fas fa-star'" : rating >= 3.5 ? "'fas fa-star-half-alt'" : "'far fa-star'"}></i>
-  <i class=${rating >= 5 ? "'fas fa-star'" : rating >= 4.5 ? "'fas fa-star-half-alt'" : "'far fa-star'"}></i>
-  `;
+  const starIcons = [];
+  for (let i = 1; i <= 5; i++) {
+    if (rating >= i) {
+      starIcons.push("fas fa-star");
+    } else if (rating >= i - 0.5) {
+      starIcons.push("fas fa-star-half-alt");
+    } else {
+      starIcons.push("far fa-star");
+    }
+  }
+  return starIcons.map((iconClass) => `<i class="${iconClass}"></i>`).join("");
 }

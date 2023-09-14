@@ -1,23 +1,25 @@
-export function useLocalStorage<T>(key: string, initialValue: T) {
-  localStorage.setItem(key, JSON.stringify(initialValue));
+export function useLocalStorage<T>(key: string, value: T) {
+  localStorage.setItem(key, JSON.stringify(value));
 }
 
-export function getLocalStorage(key: string) {
-  return JSON.parse(localStorage.getItem(key)!);
+export function getLocalStorage<T>(key: string): T {
+  const item = localStorage.getItem(key);
+  return item ? JSON.parse(item) : null;
 }
 
-export function removeLocalStorage(key:string){
-  localStorage.removeItem(key)
+export function removeLocalStorage(key: string) {
+  localStorage.removeItem(key);
 }
 
-export function useSessionStorage<T>(key: string, initialValue: T) {
-  sessionStorage.setItem(key, JSON.stringify(initialValue));
+export function useSessionStorage<T>(key: string, value: T) {
+  sessionStorage.setItem(key, JSON.stringify(value));
 }
 
-export function getSessionStorage(key: string) {
-  return JSON.parse(sessionStorage.getItem(key)!);
+export function getSessionStorage<T>(key: string): T {
+  const item = sessionStorage.getItem(key);
+  return item ? JSON.parse(item) : null;
 }
 
 export function removeSessionStorage(key: string) {
-  sessionStorage.removeItem(key)
+  sessionStorage.removeItem(key);
 }

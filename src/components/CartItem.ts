@@ -1,16 +1,24 @@
 import productData from "../data/products.json";
 import { ProductEntry } from "../types";
 import { Cart } from "../types";
-import { increaseCartQuantity, decreaseCartQuantity, removeFromCart } from "../context/ShopingCartContext";
+import {
+  increaseCartQuantity,
+  decreaseCartQuantity,
+  removeFromCart,
+} from "../context/ShopingCartContext";
 import { paymentRegister } from "../context/PaymentRegister";
 import { getSessionStorage } from "../hooks/useLocalStore";
-import { fomatCurrency } from "../utilities/formatcurrency";
+import { formatCurrency } from "../utilities/formatCurrency";
+import NavBar from "./NavBar";
+NavBar();
 
 const cartcontainer = document.querySelector<HTMLDivElement>("#cartContainer")!;
 const spanTotal = document.querySelector<HTMLSpanElement>("#precioTotal")!;
 const btnPayment = document.querySelector<HTMLButtonElement>("#btnPay")!;
 const countItems = document.querySelector<HTMLSpanElement>("#contadorCarrito")!;
-const loginregistermodal = document.querySelector<HTMLButtonElement>("#loginRegisterModal")!;
+const loginregistermodal = document.querySelector<HTMLButtonElement>(
+  "#loginRegisterModal"
+)!;
 
 const products: ProductEntry[] = productData as ProductEntry[];
 
@@ -46,7 +54,8 @@ export function CartItem(cartList: Cart[]) {
     imgProduct.className = "img-cart img-thumbnail";
 
     const divWrap = document.createElement("div");
-    divWrap.className = "d-flex flex-wrap justify-content-between w-100 gap-2 me-auto";
+    divWrap.className =
+      "d-flex flex-wrap justify-content-between w-100 gap-2 me-auto";
 
     const divDetailProduct = document.createElement("div");
     divDetailProduct.className = "me-auto";
@@ -64,11 +73,13 @@ export function CartItem(cartList: Cart[]) {
     /*** product price ***/
     const divPrice = document.createElement("div");
     divPrice.className = "text-muted price-cart";
-    divPrice.innerText = fomatCurrency(product.price).toString();
+    divPrice.innerText = formatCurrency(product.price).toString();
 
     /*** product subtotal ***/
     const divSubTotal = document.createElement("div");
-    divSubTotal.innerText = fomatCurrency(product.price * item.quantity).toString();
+    divSubTotal.innerText = formatCurrency(
+      product.price * item.quantity
+    ).toString();
     total += product.price * item.quantity;
 
     const divbtns = document.createElement("div");
@@ -131,7 +142,7 @@ export function CartItem(cartList: Cart[]) {
     divItemProduct.append(enlaceModal);
     divItemProduct.append(divWrap);
 
-    spanTotal.innerText = "Total " + fomatCurrency(total).toString();
+    spanTotal.innerText = "Total " + formatCurrency(total).toString();
 
     btnPayment.innerText = "Pagar";
     btnPayment.classList.remove("disabled");

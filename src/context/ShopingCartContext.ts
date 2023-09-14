@@ -61,7 +61,7 @@ export function checkIconAdded(_id: number, condition: boolean) {
   if (condition) {
     iconAdded.className = "fas fa-check-circle ms-1";
   } else {
-    iconAdded.className = " ";
+    iconAdded.className = "fa-solid fa-shopping-cart";
   }
 }
 

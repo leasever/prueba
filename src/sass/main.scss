@@ -68,17 +68,6 @@ body {
   }
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  margin: 0;
-  padding: 0;
-  color: $color-title;
-}
-
 img {
   max-width: 100%;
   vertical-align: top;
@@ -143,14 +132,30 @@ header {
 
 //main
 main {
-  .carousel-dss {
-    h4 {
-      text-shadow: 1px 1px 2px black, 0 0 1em $color-primary, 0 0 0.2em $color-primary;
+  /* Estilos para el contenedor del mensaje de bienvenida */
+  .welcome-message {
+    position: relative;
+    /* Estilos para el contenedor del título */
+    .title-container {
+      color: $color-text;
+      position: absolute;
+      top: 0; /* Ajusta la posición vertical según tus necesidades */
+      left: 50%; /* Centra horizontalmente el título */
+      transform: translateX(-50%); /* Centra horizontalmente el título */
+      // background-color: rgba(255, 255, 255, 0.8); /* Fondo semitransparente */
+      padding: 20px; /* Espaciado interno */
+      z-index: 2; /* Asegura que esté sobre el carrusel */
+      width: fit-content; /* Ancho basado en el contenido del título */
     }
-  }
-  .product-title {
-    h1 {
-      border-bottom: 3px solid $color-title;
+
+    .carousel-dss {
+      text-shadow: 1px 1px 2px black, 0 0 1em $color-primary,
+        0 0 0.2em $color-primary;
+    }
+    .product-title {
+      h2 {
+        border-bottom: 3px solid $color-title;
+      }
     }
   }
 }
