@@ -1,11 +1,15 @@
 import { ProductEntry } from "../types";
+import productData from "../data/products.json";
 
-export default function ProductDetail({
-  _id,
-  name,
-  image,
-  description,
-}: ProductEntry) {
+export default function ProductModal() {
+  const products: ProductEntry[] = productData as ProductEntry[];
+
+  products.forEach((product) => {
+    ProductDetail(product);
+  });
+}
+
+function ProductDetail({ _id, name, image, description }: ProductEntry) {
   return (document.getElementById("productModal")!.innerHTML += `
   <div class="modal fade" id="staticBackdrop${_id}" key="${_id}" >
     <div class="modal-dialog modal-md ">
@@ -30,7 +34,7 @@ export default function ProductDetail({
                         return `<div class="carousel-item  ${
                           index === 1 ? "active" : ""
                         }">
-                          <img src="${img}" class="d-block w-100 img-thumbnail" alt="${name}">
+                          <img src="${img}" class="d-block w-100 img-thumbnail" alt="${name}" loading="lazy" />
                         </div>`;
                       }
                       return null;

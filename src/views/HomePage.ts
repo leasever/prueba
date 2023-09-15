@@ -1,5 +1,4 @@
 import ProductCard from "../components/ProductCard";
-import ProductDetail from "../components/ProductModal";
 import productData from "../data/products.json";
 import { ProductEntry } from "../types";
 
@@ -88,8 +87,6 @@ function cardProducts() {
 
   products.forEach((product) => {
     const productCard = ProductCard(product);
-    ProductDetail(product);
-
     productContainer?.appendChild(productCard);
   });
 }

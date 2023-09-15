@@ -1,9 +1,12 @@
 import ProductCard from "../components/ProductCard";
-import ProductDetail from "../components/ProductModal";
 import productData from "../data/products.json";
 import { ProductEntry } from "../types";
 
 export default function ProductsPage() {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
   return (
     (document.getElementById("main-content")!.innerHTML += `
     <!-- Galery products -->
@@ -30,8 +33,6 @@ function cardProducts() {
 
   products.forEach((product) => {
     const productCard = ProductCard(product);
-    ProductDetail(product);
-
     productContainer?.appendChild(productCard);
   });
 }

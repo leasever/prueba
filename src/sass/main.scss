@@ -128,20 +128,17 @@ header {
 
 //main
 main {
-  /* Estilos para el contenedor del mensaje de bienvenida */
   .welcome-message {
     position: relative;
-    /* Estilos para el contenedor del título */
     .title-container {
       color: $color-text;
       position: absolute;
-      top: 0; /* Ajusta la posición vertical según tus necesidades */
-      left: 50%; /* Centra horizontalmente el título */
-      transform: translateX(-50%); /* Centra horizontalmente el título */
-      // background-color: rgba(255, 255, 255, 0.8); /* Fondo semitransparente */
-      padding: 20px; /* Espaciado interno */
-      z-index: 2; /* Asegura que esté sobre el carrusel */
-      width: fit-content; /* Ancho basado en el contenido del título */
+      top: 0; 
+      left: 50%; 
+      transform: translateX(-50%); 
+      padding: 20px; 
+      z-index: 2; 
+      width: fit-content; 
     }
 
     .carousel-dss {
@@ -161,6 +158,103 @@ footer {
   border-top: 1px solid $color-border;
   padding: 30px 0;
   text-align: center;
+  .container {
+    width: 400px;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: $color-text;
+    .heading {
+      font-size: 25px;
+      font-weight: 500;
+      margin-bottom: 10px;
+    }
+    .options {
+      select {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid $color-primary;
+        border-radius: 5px;
+        outline: none;
+      }
+      p {
+        font-size: 14px;
+        font-weight: 600;
+        margin-bottom: 5px;
+        color: $color-primary;
+      }
+      div:not(:last-child) select {
+        margin-bottom: 20px;
+      }
+    }
+    .line {
+      position: relative;
+      width: 100%;
+      height: 1px;
+      background-color: $color-primary;
+      opacity: 0.5;
+      margin: 30px 0;
+    }
+    .record img {
+      width: 30px;
+      height: 30px;
+      display: none;
+    }
+    .record.recording {
+      img {
+        display: block;
+      }
+      ion-icon {
+        display: none;
+      }
+    }
+    .result {
+      width: 100%;
+      min-height: 200px;
+      padding: 10px;
+      border: 1px solid $color-primary;
+      border-radius: 5px;
+      font-size: 18px;
+      font-weight: 500;
+      margin-bottom: 20px;
+      color: $color-primary;
+      p {
+        display: inline;
+        margin-left: 3px;
+        color: $color-title;
+      }
+    }
+  }
+
+  .btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    height: 60px;
+    padding: 20px;
+    width: 100%;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    font-size: 20px;
+    font-weight: 500;
+    cursor: pointer;
+    color: #fff;
+    background-color: $color-title;
+    ion-icon {
+      font-size: 30px;
+    }
+  }
+  .btn:disabled {
+    background-color: $color-title;
+    cursor: not-allowed;
+  }
+
+  .buttons {
+    display: flex;
+    gap: 20px;
+  }
 }
 
 //login modal

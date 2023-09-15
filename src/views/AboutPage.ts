@@ -1,7 +1,7 @@
 export default function AboutPage() {
   window.scrollTo({
     top: 0,
-    behavior: "smooth", // Hace que el desplazamiento sea suave
+    behavior: "smooth",
   });
   return (document.getElementById("main-content")!.innerHTML += `
   <div id="about">
@@ -37,7 +37,7 @@ export default function AboutPage() {
                   src="img/about/boutique2.png"
                   alt="Imagen de Nosotros"
                   class="img-fluid rounded-circle mb-4 w-75"
-                  loading="eager"
+                  loading="lazy"
                 />
               </div>
               <div class="col-lg-6 col-md-6 col-12">

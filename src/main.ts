@@ -1,25 +1,19 @@
+import ProductModal from "./components/ProductModal";
 import { shopingCartContext } from "./context/ShopingCartContext";
 import "./css/main.css";
 import { getLocalStorage } from "./hooks/useLocalStore";
 import navigation from "./utilities/navigation";
+import SpeechRecognition from "./utilities/speechRecognition";
 import { validatorUserConnected } from "./utilities/validatorUser";
-
-// Uso de la función para precargar imágenes
-const imageUrlsToPreload = [
-  "img/about/boutique1.png",
-  "img/about/boutique2.png",
-  "img/about/boutique3.png",
-  // Agrega aquí más URLs de imágenes que desees precargar
-];
 
 const sectloader = document.querySelector<HTMLDivElement>("#loaderSection")!;
 
 document.addEventListener("DOMContentLoaded", () => {
-
   navigation();
   if (getLocalStorage("carrito")) shopingCartContext();
   validatorUserConnected();
 });
+
 window.onload = () => {
   sectloader.setAttribute("style", "visibility:hidden; opacity:0;");
   preloadImages(imageUrlsToPreload)
@@ -30,9 +24,13 @@ window.onload = () => {
     .catch((error) => {
       console.error("Error al precargar imágenes:", error);
     });
+  ProductModal();
+  SpeechRecognition();
 };
-
-
+const imageUrlsToPreload = [
+  "img/about/boutique1.png",
+  "img/about/boutique2.png",
+];
 function preloadImages(imageUrls: string[]) {
   const imagePromises = [];
 
@@ -50,6 +48,3 @@ function preloadImages(imageUrls: string[]) {
 
   return Promise.all(imagePromises);
 }
-
-
-

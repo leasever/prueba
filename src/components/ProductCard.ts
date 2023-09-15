@@ -22,7 +22,7 @@ export default function ProductCard({
     <div class="col">
       <div class="card">
         <a href="#staticBackdrop${_id}" data-bs-toggle="modal">
-          <img src="${image[0]}" class="card-img-top" alt="${name}" />
+          <img src="${image[0]}" class="card-img-top" alt="${name}" loading="lazy"/>
         </a>
         <div class="card-body">
           <span class="card-title d-flex justify-content-between bgn fs-3 mb-2">
