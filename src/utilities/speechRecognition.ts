@@ -1,9 +1,11 @@
-import { ProductEntry } from "../types";
+import ResultsModal from "../components/ResultModal";
+import { increaseCartQuantity } from "../context/ShopingCartContext";
 import productData from "../data/products.json";
+import { ProductEntry } from "../types";
 import { formatCurrency } from "./formatCurrency";
 import rating from "./rating";
-import { increaseCartQuantity } from "../context/ShopingCartContext";
 
+ResultsModal();
 const recordBtn = document.getElementById("voice-search-button");
 const titleModal = document.getElementById(
   "exampleModalLabel"
@@ -96,7 +98,7 @@ function startRecognitionForSearch() {
       const words = speechResult.split(" ");
 
       recognizedWords = words;
-      titleModal.innerText = `Resultados para: ${recognizedWords.join(" ")}`;
+      titleModal.innerText = `Resultados de: ${recognizedWords.join(" ")}`;
     };
 
     recognition.onend = () => {

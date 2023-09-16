@@ -8,7 +8,6 @@ import {
 import { encrypt, decrypt } from "../utilities/crypted";
 import { v4 } from "uuid";
 import { profileModal } from "../components/ProfileItem";
-// import { ProductItem } from "../components/ProductItem";
 import { shopingCartContext } from "./ShopingCartContext";
 
 const navprofiletab =
