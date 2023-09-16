@@ -1,7 +1,7 @@
-import { Cart } from "../types";
 import { CartItem } from "../components/CartItem";
 import { useLocalStorage, getLocalStorage } from "../hooks/useLocalStore";
 
+import { Cart } from "../types";
 let cartList: Cart[] = [];
 
 const cartcontainer = document.querySelector<HTMLDivElement>("#cartContainer")!;
@@ -56,12 +56,16 @@ export function removeFromCart(_id: number) {
   checkIconAdded(_id, false);
 }
 
-export function checkIconAdded(_id: number, condition: boolean) {
-  const iconAdded = document.querySelector<HTMLButtonElement>("#icon" + _id)!;
+function checkIconAdded(_id: number, condition: boolean) {
+  const iconAdded = document.querySelector<HTMLButtonElement>(
+    "#addToCartButton" + _id
+  )!;
   if (condition) {
-    iconAdded.className = "fas fa-check-circle ms-1";
+    iconAdded.setAttribute("disabled", "");
+    iconAdded.innerText = `Añadido ✅`;
   } else {
-    iconAdded.className = "fa-solid fa-shopping-cart";
+    iconAdded.removeAttribute("disabled");
+    iconAdded.innerText = `Añadir 🛒`;
   }
 }
 

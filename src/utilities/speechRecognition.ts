@@ -1,10 +1,12 @@
 import ResultsModal from "../components/ResultModal";
 import { increaseCartQuantity } from "../context/ShopingCartContext";
 import productData from "../data/products.json";
-import { ProductEntry } from "../types";
+import { getLocalStorage } from "../hooks/useLocalStore";
+import { Cart, ProductEntry } from "../types";
 import { formatCurrency } from "./formatCurrency";
 import rating from "./rating";
 
+let cartList: Cart[] = [];
 ResultsModal();
 const recordBtn = document.getElementById("voice-search-button");
 const titleModal = document.getElementById(
@@ -29,6 +31,7 @@ function showResultsInModal(results: ProductEntry[]) {
       resultItem.classList.add("result-item");
       const addToCart = () => {
         increaseCartQuantity(result._id);
+        checkIconAdded(result._id, true);
       };
       resultItem.innerHTML = `
         <div class="row border-bottom mb-3 pb-3">
@@ -64,8 +67,13 @@ function showResultsInModal(results: ProductEntry[]) {
       const addToCartButton = document.querySelector(
         `#addToCartButtonSearch${result._id}`
       );
-
       addToCartButton?.addEventListener("click", addToCart);
+
+      cartList.forEach((item) => {
+        if (item?._id === result._id) {
+          checkIconAdded(item._id, true);
+        }
+      });
     });
   }
 
@@ -136,8 +144,20 @@ function startRecognitionForSearch() {
 
 export default function createVoiceSearchButton() {
   recordBtn!.addEventListener("click", () => {
+    cartList = getLocalStorage("carrito");
+
     startRecognitionForSearch();
     recordBtn!.classList.add("recording");
     recordBtn!.querySelector!("p")!.innerHTML = "Escuchando...";
   });
+}
+
+function checkIconAdded(_id: number, condition: boolean) {
+  const iconAdded = document.querySelector<HTMLButtonElement>(
+    "#addToCartButtonSearch" + _id
+  )!;
+  if (condition) {
+    iconAdded.setAttribute("disabled", "");
+    iconAdded.innerText = `Añadido ✅`;
+  }
 }

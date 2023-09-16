@@ -132,6 +132,11 @@ header {
       display: none;
     }
   }
+
+  .selected {
+    font-weight: bold;
+    text-decoration: underline;
+  }
 }
 
 //class stiky

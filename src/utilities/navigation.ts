@@ -3,6 +3,7 @@ import { getLocalStorage } from "../hooks/useLocalStore";
 import AboutPage from "../views/AboutPage";
 import HomePage from "../views/HomePage";
 import ProductsPage from "../views/ProductsPage";
+
 export default function navigation() {
   const mainContent = document.getElementById("main-content");
   const navLinks = document.querySelectorAll(".nav-menu");
@@ -32,6 +33,10 @@ export default function navigation() {
       .getAttribute("href")!
       .substring(1);
 
+    navLinks.forEach((link) => {
+      link.classList.remove("selected");
+    });
+
     switch (targetSection) {
       case "homePage":
         loadPage(homePage);
@@ -45,11 +50,14 @@ export default function navigation() {
       default:
         break;
     }
+
+    (e.currentTarget as HTMLElement).classList.add("selected");
   }
 
   navLinks.forEach((link) => {
     link.addEventListener("click", handleNavLinkClick);
   });
 
+  navLinks[0].classList.add("selected");
   loadPage(HomePage);
 }

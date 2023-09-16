@@ -10215,6 +10215,10 @@ header .record.recording img {
 header .record.recording i {
   display: none;
 }
+header .selected {
+  font-weight: bold;
+  text-decoration: underline;
+}
 
 .sticky {
   position: fixed;

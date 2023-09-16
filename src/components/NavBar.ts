@@ -26,7 +26,7 @@ export default function NavBar() {
               <ul class="navbar-nav me-auto mb-2 mb-md-0">
                 <li class="nav-item">
                   <a
-                    class="nav-link nav-menu active"
+                    class="nav-link nav-menu"
                     aria-current="page"
                     href="#homePage"
                     >Inicio</a
