@@ -1,7 +1,7 @@
 [
   {
     "_id": 1,
-    "name": "Rascador T-4000",
+    "name": "Rascador para gatos",
     "image": [
       "img/products/scraper.jpg",
       "img/products/scraperModal1.jpg",
@@ -14,20 +14,20 @@
   },
   {
     "_id": 2,
-    "name": "Headphone Pro",
+    "name": "Auriculares tipo vincha",
     "image": [
       "img/products/headphone.jpg",
       "img/products/headphoneModal1.jpg",
       "img/products/headphoneModal2.jpg",
       "img/products/headphoneModal3.jpg"
     ],
-    "description": "El Headphone Pro tiene bajos más potentes, mejora la experiencia de audio, proporciona una alta calidad de sonido.",
+    "description": "Los Auriculares tiene bajos más potentes, mejora la experiencia de audio, proporciona una alta calidad de sonido.",
     "price": 150,
     "rating": 3.5
   },
   {
     "_id": 3,
-    "name": "Mochila Pet 7000",
+    "name": "Mochila para mascotas",
     "image": [
       "img/products/mochila.jpg",
       "img/products/mochilaModal1.jpg",

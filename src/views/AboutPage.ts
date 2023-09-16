@@ -1,7 +1,6 @@
 export default function AboutPage() {
   window.scrollTo({
     top: 0,
-    behavior: "smooth",
   });
   return (document.getElementById("main-content")!.innerHTML += `
   <div id="about">

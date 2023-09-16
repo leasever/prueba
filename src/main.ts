@@ -3,7 +3,7 @@ import { shopingCartContext } from "./context/ShopingCartContext";
 import "./css/main.css";
 import { getLocalStorage } from "./hooks/useLocalStore";
 import navigation from "./utilities/navigation";
-import SpeechRecognition from "./utilities/speechRecognition";
+import createVoiceSearchButton from "./utilities/speechRecognition";
 import { validatorUserConnected } from "./utilities/validatorUser";
 
 const sectloader = document.querySelector<HTMLDivElement>("#loaderSection")!;
@@ -18,14 +18,13 @@ window.onload = () => {
   sectloader.setAttribute("style", "visibility:hidden; opacity:0;");
   preloadImages(imageUrlsToPreload)
     .then(() => {
-      console.log("Todas las imágenes se han precargado correctamente.");
       // Puedes realizar otras acciones después de que las imágenes se hayan precargado
     })
     .catch((error) => {
       console.error("Error al precargar imágenes:", error);
     });
   ProductModal();
-  SpeechRecognition();
+  createVoiceSearchButton();
 };
 const imageUrlsToPreload = [
   "img/about/boutique1.png",

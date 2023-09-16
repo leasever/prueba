@@ -5,7 +5,6 @@ import { ProductEntry } from "../types";
 export default function ProductsPage() {
   window.scrollTo({
     top: 0,
-    behavior: "smooth",
   });
   return (
     (document.getElementById("main-content")!.innerHTML += `

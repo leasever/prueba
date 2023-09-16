@@ -5,7 +5,6 @@ import { ProductEntry } from "../types";
 export default function HomePage() {
   window.scrollTo({
     top: 0,
-    behavior: "smooth", // Hace que el desplazamiento sea suave
   });
   return (
     (document.getElementById("main-content")!.innerHTML += `<!-- Carousel -->

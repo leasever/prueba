@@ -56,7 +56,21 @@ export default function NavBar() {
                     id="button-addon2"
                     aria-label="Search"
                   >
-                    <p><i class="fa-solid fa-magnifying-glass"></i></p>
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                  </button>
+                  <!-- Agregar el ícono de búsqueda por voz -->
+                  
+                  <button  type="button" class="btn record btn-outline-secondary btn-custom" id="voice-search-button">
+                    <div class="icon">
+                      <i class="fa-solid fa-microphone"></i>
+                      <img src="img/bars.svg" alt="" />
+                    </div>
+                    <p>Escuchar</p>
+                  </button>
+
+                <!-- Botón de modal invisible -->
+                  <button type="button" class="btn btn-primary d-none" data-bs-toggle="modal" data-bs-target="#resultsModal" id="modalButton">
+                    Mostrar Modal
                   </button>
                 </div>
               </form>

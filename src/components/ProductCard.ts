@@ -30,7 +30,7 @@ export default function ProductCard({
             <span class="fs-6">${formatCurrency(price)}</span>
           </span>
           <div>${Rating(rating)}</div>
-          <div class="d-grid col-6 mx-auto mb-3">
+          <div class="d-grid col-6 mx-auto my-3">
             <button class="btn btn-outline-dark btn-custom text-break custom-cart-button" id="addToCartButton${_id}">
               Añadir 
               <i id="icon${_id}" class="fa-solid fa-shopping-cart"></i>

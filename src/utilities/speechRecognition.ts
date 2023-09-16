@@ -1,116 +1,141 @@
-import  { languages } from "../utilities/lenguages"
+import { ProductEntry } from "../types";
+import productData from "../data/products.json";
+import { formatCurrency } from "./formatCurrency";
+import rating from "./rating";
+import { increaseCartQuantity } from "../context/ShopingCartContext";
 
-export default function SpeechRecognition() {
-  const recordBtn = document.querySelector(".record"),
-    result = document.querySelector<HTMLDivElement>(".result"),
-    downloadBtn = document.querySelector<HTMLButtonElement>(".download"),
-    inputLanguage = document.querySelector<HTMLInputElement>("#language"),
-    clearBtn = document.querySelector(".clear");
+const recordBtn = document.getElementById("voice-search-button");
+const titleModal = document.getElementById(
+  "exampleModalLabel"
+) as HTMLHeadingElement;
 
-  let SpeechRecognition =
-      window.SpeechRecognition || window.webkitSpeechRecognition,
-    recognition: SpeechRecognition,
-    recording = false;
+let recording = false;
+let recognizedWords: string[] = [];
 
-  function populateLanguages() {
-    languages.forEach((lang) => {
-      const option = document.createElement("option");
-      option.value = lang.code;
-      option.innerHTML = lang.name;
-      inputLanguage!.appendChild(option);
+function showResultsInModal(results: ProductEntry[]) {
+  const modalButton = document.getElementById(
+    "modalButton"
+  ) as HTMLButtonElement;
+  const modalBody = document.getElementById("modal-body");
+  modalBody!.innerHTML = "";
+
+  if (results.length === 0) {
+    modalBody!.innerHTML = "<p>No se encontraron resultados.</p>";
+  } else {
+    results.forEach((result) => {
+      const resultItem = document.createElement("div");
+      resultItem.classList.add("result-item");
+      const addToCart = () => {
+        increaseCartQuantity(result._id);
+      };
+      resultItem.innerHTML = `
+        <div class="row border-bottom mb-3 pb-3">
+            <div class="col-12 col-sm-2 d-flex align-items-center justify-content-center mb-2 mb-sm-0">
+                <img src="${result.image[0]}" class="card-img-top" alt="${
+        result.name
+      }" loading="lazy"/>
+            </div>
+            
+            <div class="col-12 col-sm-10">
+                <h5 class="card-title">${result.name}</h5>
+                <div class="d-flex justify-content-between align-items-center">
+                <div class="me-sm-3 mb-2 mb-sm-0">
+                    <p>Precio: ${formatCurrency(result.price)}</p>
+                    <div>${rating(result.rating)}</div>
+                </div>
+                <button class="btn btn-outline-dark btn-custom text-break custom-cart-button" id="addToCartButtonSearch${
+                  result._id
+                }">
+                    Añadir 
+                    <i id="iconSearch${
+                      result._id
+                    }" class="fa-solid fa-shopping-cart"></i>
+                    </button>
+                </div>        
+            </div>
+            <div class="d-sm-flex justify-content-between align-items-center">
+                <p>${result.description}</p>
+            </div>  
+        </div> `;
+      modalBody!.appendChild(resultItem);
+
+      const addToCartButton = document.querySelector(
+        `#addToCartButtonSearch${result._id}`
+      );
+
+      addToCartButton?.addEventListener("click", addToCart);
     });
   }
 
-  populateLanguages();
+  modalButton.click();
+}
 
-  function speechToText() {
-    try {
-      recognition = new SpeechRecognition();
-      recognition.lang = inputLanguage!.value;
-      recognition.interimResults = true;
-      recordBtn!.classList.add("recording");
-      recordBtn!.querySelector!("p")!.innerHTML = "Listening...";
-      recognition.start();
-      recognition.onresult = (event) => {
-        const speechResult = event.results[0][0].transcript;
-        //detect when intrim results
-        if (event.results[0].isFinal) {
-          result!.innerHTML += " " + speechResult;
-          result!.querySelector!("p")!.remove();
-        } else {
-          //creative p with class interim if not already there
-          if (!document.querySelector(".interim")) {
-            const interim = document.createElement("p");
-            interim.classList.add("interim");
-            result!.appendChild(interim);
-          }
-          //update the interim p with the speech result
-          document!.querySelector!(".interim")!.innerHTML = " " + speechResult;
-        }
-        downloadBtn!.disabled = false;
-      };
-      recognition.onspeechend = () => {
-        speechToText();
-      };
-      recognition.onerror = (event) => {
-        stopRecording();
-        if (event.error === "no-speech") {
-          alert("No speech was detected. Stopping...");
-        } else if (event.error === "audio-capture") {
-          alert(
-            "No microphone was found. Ensure that a microphone is installed."
+function startRecognitionForSearch() {
+  if (recording) {
+    return;
+  }
+
+  recording = true;
+  recognizedWords = [];
+  titleModal.innerText = "Resultados para:";
+
+  if ("webkitSpeechRecognition" in window) {
+    const recognition = new webkitSpeechRecognition();
+    recognition.continuous = false;
+    recognition.lang = "es-ES";
+
+    recognition.onstart = () => {
+      recognizedWords = [];
+    };
+
+    recognition.onresult = (event) => {
+      const speechResult = event.results[0][0].transcript
+        .toLowerCase()
+        .replace(/[.,]/g, "");
+
+      const words = speechResult.split(" ");
+
+      recognizedWords = words;
+      titleModal.innerText = `Resultados para: ${recognizedWords.join(" ")}`;
+    };
+
+    recognition.onend = () => {
+      if (recognizedWords.length === 0) {
+        showResultsInModal([]);
+      } else {
+        const matchingProducts = productData.filter((product) => {
+          return recognizedWords.every((word) =>
+            product.name.toLowerCase().includes(word)
           );
-        } else if (event.error === "not-allowed") {
-          alert("Permission to use microphone is blocked.");
-        } else if (event.error === "aborted") {
-          alert("Listening Stopped.");
-        } else {
-          alert("Error occurred in recognition: " + event.error);
-        }
-      };
-    } catch (error) {
-      recording = false;
+        });
 
-      console.log(error);
-    }
-  }
+        showResultsInModal(matchingProducts);
+      }
 
-  recordBtn!.addEventListener("click", () => {
-    if (!recording) {
-      speechToText();
-      recording = true;
-    } else {
       stopRecording();
+    };
+
+    recognition.start();
+
+    function stopRecording() {
+      recognition.stop();
+      recordBtn!.querySelector!("p")!.innerHTML = "Escuchar";
+      recordBtn!.classList.remove("recording");
+      recording = false;
     }
-  });
-
-  function stopRecording() {
-    recognition.stop();
-    recordBtn!.querySelector!("p")!.innerHTML = "Start Listening";
-    recordBtn!.classList.remove("recording");
+  } else {
     recording = false;
-  }
 
-  function download() {
-    const text = result!.innerText;
-    const filename = "speech.txt";
-
-    const element = document.createElement("a");
-    element.setAttribute(
-      "href",
-      "data:text/plain;charset=utf-8," + encodeURIComponent(text)
+    alert(
+      "Tu navegador no soporta la Web Speech API. Utiliza un navegador compatible como Chrome."
     );
-    element.setAttribute("download", filename);
-    element.style.display = "none";
-    document.body.appendChild(element);
-    element.click();
-    document.body.removeChild(element);
   }
+}
 
-  downloadBtn!.addEventListener("click", download);
-
-  clearBtn!.addEventListener("click", () => {
-    result!.innerHTML = "";
-    downloadBtn!.disabled = true;
+export default function createVoiceSearchButton() {
+  recordBtn!.addEventListener("click", () => {
+    startRecognitionForSearch();
+    recordBtn!.classList.add("recording");
+    recordBtn!.querySelector!("p")!.innerHTML = "Escuchando...";
   });
 }
