@@ -1,13 +1,13 @@
-import productData from "../data/products.json";
-import { ProductEntry } from "../types";
-import { Cart } from "../types";
+import { paymentRegister } from "../context/PaymentRegister";
 import {
-  increaseCartQuantity,
+  checkAddedToCart,
   decreaseCartQuantity,
+  increaseCartQuantity,
   removeFromCart,
 } from "../context/ShopingCartContext";
-import { paymentRegister } from "../context/PaymentRegister";
+import productData from "../data/products.json";
 import { getSessionStorage } from "../hooks/useLocalStore";
+import { Cart, ProductEntry } from "../types";
 import { formatCurrency } from "../utilities/formatCurrency";
 import NavBar from "./NavBar";
 NavBar();
@@ -102,6 +102,7 @@ export function CartItem(cartList: Cart[]) {
     btnRemove.addEventListener("click", () => {
       if (confirm("Desea eliminar el producto: " + product?.name)) {
         removeFromCart(item._id);
+        checkAddedToCart("#addToCartButtonSearch", item._id);
       }
       return;
     });

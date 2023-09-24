@@ -62,5 +62,6 @@ function updateUsers(users: User[]) {
   customCartButtons.forEach((button) => {
     const _id = button.id.replace("addToCartButton", "");
     button.innerHTML = `Añadir <i id="icon${_id}" class="fa-solid fa-shopping-cart"></i>`;
+    button.removeAttribute("disabled");
   });
 }

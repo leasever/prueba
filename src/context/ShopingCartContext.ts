@@ -12,12 +12,14 @@ export function shopingCartContext() {
   cartList.forEach((item) => {
     if (item?._id) {
       checkIconAdded(item._id, true);
+    } else {
+      checkIconAdded(item._id, false);
     }
   });
 }
 
 export function increaseCartQuantity(_id: number) {
-  if (cartList.find((item) => item._id === _id) == null) {
+  if (cartList?.find((item) => item._id === _id) == null) {
     cartList = [...cartList, { _id, quantity: 1 }];
   } else {
     cartList.map((item) => {
@@ -73,4 +75,22 @@ function updateCart(cartList: Cart[]) {
   cartcontainer.innerHTML = ``;
   CartItem(cartList);
   useLocalStorage<Cart[]>("carrito", cartList);
+}
+
+export function checkAddedToCart(buttonName: string, _id: number) {
+  updateCart(cartList);
+  cartList = getLocalStorage("carrito");
+  const iconAdded = document.querySelector<HTMLButtonElement>(
+    `${buttonName + _id}`
+  )!;
+  if (iconAdded != null && cartList != null) {
+    iconAdded.removeAttribute("disabled");
+    iconAdded.innerText = `Añadir 🛒`;
+    cartList.map((item) => {
+      if (item?._id === _id) {
+        iconAdded.setAttribute("disabled", "");
+        iconAdded.innerText = `Añadido ✅`;
+      }
+    });
+  }
 }

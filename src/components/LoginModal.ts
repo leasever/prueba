@@ -1,4 +1,3 @@
-
 export default function LoginRegisterModal() {
   return (document.getElementById(
     "loginModalSection"

@@ -1,6 +1,14 @@
+import ParallaxSection from "../components/ParallaxSection";
 import ProductCard from "../components/ProductCard";
 import productData from "../data/products.json";
 import { ProductEntry } from "../types";
+
+const sectionData = {
+  id: "parallaxSection", 
+  image: "parallax_home.jpg", 
+  title: "Outlet DSStore",
+  description: "Los mejores productos con grandes descuentos.",
+};
 
 export default function HomePage() {
   window.scrollTo({
@@ -69,13 +77,16 @@ export default function HomePage() {
           <div class="d-flex product-title pb-4">
             <h2 class=" text-center m-auto text-break">NOVEDADES</h2>
           </div>
-          <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-4 col-xl-10 m-auto justify-content-between" id="productSection">
+          <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-4 col-xl-10 m-auto justify-content-center" id="productSection">
             <!-- Aquí se mostrarán los productos -->
           </div>
         </div>
       </div>
-    </section>`),
-    cardProducts()
+    </section>
+      <section id="parallaxSection" class="container-xxl"></section>
+    `),
+    cardProducts(),
+    ParallaxSection(sectionData)
   );
 }
 
