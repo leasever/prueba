@@ -384,7 +384,7 @@
         </section>
       </div>`}function ze(e){const{id:t,image:a,title:n,description:s}=e,o=document.getElementById(t);if(!o){console.error(`Element with id '${t}' not found.`);return}const r=`
     <div class="parallax-section">
-        <div class="parallax-image" style="background-image: url('/img/banner/${a}');" ></div>
+        <div class="parallax-image" style="background-image: url('img/banner/${a}');" ></div>
         <div class="parallax-content card" id="parallaxDetails">
             <h1>${n}</h1>
             <p>${s}</p>
