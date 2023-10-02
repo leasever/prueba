@@ -3,7 +3,7 @@ import {
   increaseCartQuantity,
 } from "../context/ShopingCartContext";
 import { ProductEntry } from "../types";
-import { formatCurrency } from "../utilities/formatCurrency";
+import { formatCurrency } from "../utilities/utils";
 import rating from "../utilities/rating";
 import searchProductsByName, {
   clearSearchContext,

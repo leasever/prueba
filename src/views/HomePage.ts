@@ -22,8 +22,7 @@ export default function HomePage() {
          <div class=" py-10">
           <h1>Bienvenido a nuestra tienda en línea</h1>
           <p>Explora nuestra amplia gama de productos.</p>
-         </div>
-          
+         </div>          
         </div>
       
         <div id="carouselExampleDark" class="carousel carousel-fade carousel-dark slide " data-bs-ride="carousel">

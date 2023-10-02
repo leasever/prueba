@@ -20,7 +20,6 @@ export function clearSearchContext() {
   const cardSearch = document.querySelector("#cardSearch");
   const searchInput = document.querySelector("#buscar") as HTMLInputElement;
   const searchResultsShadow = document.querySelector("#searchResultsShadow");
-  // const clearButton = document.querySelector(`#clearSearch`);
   const clearSearch = () => {
     cardSearch!.remove();
     searchInput.removeAttribute("disabled");
@@ -28,5 +27,4 @@ export function clearSearchContext() {
     searchResultsShadow!.className = "d-none";
   };
   return clearSearch;
-  // return clearButton?.addEventListener("click", clearSearch);
 }

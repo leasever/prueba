@@ -19,14 +19,13 @@ export default function ParallaxSection(data: SectionData) {
         <div class="parallax-content card" id="parallaxDetails">
             <h1>${title}</h1>
             <p>${description}</p>
-            <a
-              href="javascript:void(0);"  // Esto evita que cambie la URL
+            <button              
               class="btn btn-outline-dark btn-custom text-break custom-cart-button mt-4 col-10"
-              onclick="navigateToProductPage();" // Llama a una función de navegación personalizada
+              id="verProductosButton" 
             >
               Ver productos
               <i class="fa-solid fa-eye"></i>
-            </a>
+            </button>
         </div>
     </div>
   `;
@@ -42,9 +41,7 @@ export default function ParallaxSection(data: SectionData) {
     }
   }
 
-  const verProductosButton = document.querySelector(
-    ".parallax-content .btn-custom"
-  );
+  const verProductosButton = document.querySelector("#verProductosButton");
   if (verProductosButton) {
     verProductosButton.addEventListener("click", navigateToProductPage);
   }

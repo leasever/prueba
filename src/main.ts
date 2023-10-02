@@ -5,7 +5,9 @@ import { getLocalStorage } from "./hooks/useLocalStore";
 import navigation from "./utilities/navigation";
 import preloadImages from "./utilities/preloadImages";
 import createVoiceSearchButton from "./utilities/speechRecognition";
+import { sectLoader } from "./utilities/utils";
 import { validatorUserConnected } from "./utilities/validatorUser";
+
 document.addEventListener("DOMContentLoaded", () => {
   navigation();
   if (getLocalStorage("carrito")) shopingCartContext();
@@ -13,6 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 window.onload = () => {
+  sectLoader();
   preloadImages(imageUrlsToPreload)
     .then(() => {
       // Puedes realizar otras acciones después de que las imágenes se hayan precargado

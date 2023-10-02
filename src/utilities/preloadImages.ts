@@ -1,7 +1,6 @@
 export default function preloadImages(imageUrls: string[]) {
-  const sectloader = document.querySelector<HTMLDivElement>("#loaderSection")!;
+  
   const imagePromises = [];
-  sectloader.setAttribute("style", "visibility:hidden; opacity:0;");
 
   for (const imageUrl of imageUrls) {
     const img = new Image();

@@ -94,7 +94,7 @@ header {
   position: sticky;
   top: 0;
   z-index: 999;
-
+  pointer-events: auto;
   .header-stiky {
     z-index: 998;
     background: rgba($light, 0.5);
@@ -249,8 +249,8 @@ footer {
   font-size: 0.85rem;
 }
 
-@media (max-width: 992px) {}
+@media (max-width: 992px) {
+}
 
 @media (max-width: 576px) {
-
 }

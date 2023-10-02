@@ -1,6 +1,6 @@
 import productData from "../data/products.json";
 import { ProductEntry, UserConnected } from "../types";
-import { formatCurrency } from "../utilities/formatCurrency";
+import { dateSpanish, formatCurrency } from "../utilities/utils";
 import CanvaCard from "./CanvaCard";
 CanvaCard();
 const products: ProductEntry[] = productData as ProductEntry[];
@@ -22,15 +22,7 @@ export function profileDetailPurchase(userconnected: UserConnected) {
     accordionbutton.setAttribute("aria-expanded", "true");
     accordionbutton.setAttribute("aria-controls", "colpase" + index);
 
-    const datespanish = new Date(compra.date).toLocaleDateString("es-ES", {
-      weekday: "short",
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-      hour: "numeric",
-      minute: "numeric",
-    });
-    accordionbutton.innerText = datespanish;
+    accordionbutton.innerText = dateSpanish(compra.date);
 
     const accordioncollapse = document.createElement("div");
     accordioncollapse.id = "colpase" + index;

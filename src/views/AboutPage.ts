@@ -7,15 +7,15 @@ export default function AboutPage() {
         <section class="about-us py-5">
           <div class="container">
             <div class="row align-items-center">
-              <div class="col-lg-6 col-md-6 col-12 text-center">
-                <img
+              <div class="col-md-6 col-12 text-center">
+                  <img
                   src="img/about/boutique1.png"
                   alt="Imagen de Nosotros"
-                  class="img-fluid rounded-circle mb-4 w-75"
+                  class="img-fluid rounded-circle mb-4 w-75 ratio ratio-1x1"
                   loading="eager"
-                />
+                  />
               </div>
-              <div class="col-lg-6 col-md-6 col-12">
+              <div class="col-md-6 col-12">
                 <h2 class="display-4">Sobre Nosotros</h2>
                 <p class="lead">
                   Somos una boutique de productos novedosos que se dedica a
@@ -31,15 +31,15 @@ export default function AboutPage() {
         <section class="about-us">
           <div class="container">
             <div class="row align-items-center flex-md-row-reverse">
-              <div class="col-lg-6 col-md-6 col-12 text-center">
+              <div class="col-md-6 col-12 text-center">
                 <img
                   src="img/about/boutique2.png"
                   alt="Imagen de Nosotros"
-                  class="img-fluid rounded-circle mb-4 w-75"
+                  class="img-fluid rounded-circle mb-4 w-75 ratio ratio-1x1"
                   loading="lazy"
                 />
               </div>
-              <div class="col-lg-6 col-md-6 col-12">
+              <div class="col-md-6 col-12">
                 <h2 class="display-4">Nuestra Misión</h2>
                 <p class="lead">
                   En nuestra boutique, encontrarás una amplia selección de
@@ -56,15 +56,15 @@ export default function AboutPage() {
         <section class="about-us py-5">
           <div class="container">
             <div class="row align-items-center">
-              <div class="col-lg-6 col-md-6 col-12 text-center">
+              <div class="col-md-6 col-12 text-center">
                 <img
                   src="img/about/boutique3.png"
                   alt="Imagen de Nosotros"
-                  class="img-fluid rounded-circle mb-4 w-75"
+                  class="img-fluid rounded-circle mb-4 w-75 ratio ratio-1x1"
                   loading="lazy"
                 />
               </div>
-              <div class="col-lg-6 col-md-6 col-12">
+              <div class="col-md-6 col-12">
                 <h2 class="display-4">Nuestro Equipo</h2>
                 <p class="lead">
                   Nuestro equipo está compuesto por entusiastas de la innovación

@@ -1,8 +1,6 @@
-import {
-  increaseCartQuantity
-} from "../context/ShopingCartContext";
+import { increaseCartQuantity } from "../context/ShopingCartContext";
 import { ProductEntry } from "../types";
-import { formatCurrency } from "../utilities/formatCurrency";
+import { formatCurrency } from "../utilities/utils";
 import Rating from "../utilities/rating";
 
 export default function ProductCard({

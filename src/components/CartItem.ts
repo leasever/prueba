@@ -8,7 +8,7 @@ import {
 import productData from "../data/products.json";
 import { getSessionStorage } from "../hooks/useLocalStore";
 import { Cart, ProductEntry } from "../types";
-import { formatCurrency } from "../utilities/formatCurrency";
+import { formatCurrency } from "../utilities/utils";
 import NavBar from "./NavBar";
 NavBar();
 
