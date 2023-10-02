@@ -384,7 +384,7 @@
         </section>
       </div>`}function Ge(e){const{id:t,image:a,title:n,description:o}=e,s=document.getElementById(t);if(!s){console.error(`Element with id '${t}' not found.`);return}const c=`
     <div class="parallax-section">
-        <div class="parallax-image" style="background-image: url('/img/banner/${a}');" ></div>
+        <div class="parallax-image" style="background-image: url('img/banner/${a}');" ></div>
         <div class="parallax-content card" id="parallaxDetails">
             <h1>${n}</h1>
             <p>${o}</p>
@@ -439,7 +439,7 @@
     </div>
   </div>
 </div>
-`,i=document.createElement("div");i.innerHTML=r;const d=i.querySelector(`#addToCartButton${e}`);return d==null||d.addEventListener("click",c),i.firstElementChild}const Qe={id:"parallaxSection",image:"/parallax_home.jpg",title:"Outlet DSStore",description:"Los mejores productos con grandes descuentos."};function oe(){return window.scrollTo({top:0}),document.getElementById("main-content").innerHTML+=`<!-- Carousel -->
+`,i=document.createElement("div");i.innerHTML=r;const d=i.querySelector(`#addToCartButton${e}`);return d==null||d.addEventListener("click",c),i.firstElementChild}const Qe={id:"parallaxSection",image:"parallax_home.jpg",title:"Outlet DSStore",description:"Los mejores productos con grandes descuentos."};function oe(){return window.scrollTo({top:0}),document.getElementById("main-content").innerHTML+=`<!-- Carousel -->
     <section class="welcome-message">
       <div class="container-xxl my-2 carousel-dss text-center">
         <div class="title-container d-none d-md-block" style="height: 75px;">
