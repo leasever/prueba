@@ -12,7 +12,6 @@ export default function AboutPage() {
                   src="img/about/boutique1.png"
                   alt="Imagen de Nosotros"
                   class="img-fluid rounded-circle mb-4 w-75 ratio ratio-1x1"
-                  loading="eager"
                   />
               </div>
               <div class="col-md-6 col-12">
@@ -35,8 +34,7 @@ export default function AboutPage() {
                 <img
                   src="img/about/boutique2.png"
                   alt="Imagen de Nosotros"
-                  class="img-fluid rounded-circle mb-4 w-75 ratio ratio-1x1"
-                  loading="lazy"
+                  class="img-fluid rounded-circle mb-4 w-75 ratio ratio-1x1"                 
                 />
               </div>
               <div class="col-md-6 col-12">

@@ -10164,6 +10164,25 @@ body .loader-page::after {
   animation: rotarload 1s ease-out infinite;
   transform: rotate(0deg);
 }
+body .toast-container {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  z-index: 9999;
+  padding: 1rem;
+}
+body .toast {
+  width: 300px;
+  border-radius: 0.25rem;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  transform: translateX(100%);
+  margin-bottom: 0.5rem;
+}
+body .toast.show {
+  opacity: 1;
+  transform: translateX(0);
+}
 
 img {
   max-width: 100%;
@@ -10284,6 +10303,14 @@ main .parallax-section .parallax-content {
   backdrop-filter: blur(2px);
   color: #090a0d;
   font-weight: 500;
+}
+
+.password-toggle-icon {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
 }
 
 footer {

@@ -9,7 +9,11 @@ import { encrypt, decrypt } from "../utilities/crypted";
 import { v4 } from "uuid";
 import { profileModal } from "../components/ProfileItem";
 import { shopingCartContext } from "./ShopingCartContext";
-
+import { showToast } from "../components/Toast";
+const options = {
+  animation: true,
+  delay: 3000,
+};
 const navprofiletab =
   document.querySelector<HTMLButtonElement>("#nav-profile-tab")!;
 export async function paymentRegister() {
@@ -48,7 +52,12 @@ export async function paymentRegister() {
   });
 
   updateUsers(updUsers);
-  alert("Gracias por su compra " + userconnected.username);
+  showToast(
+    "✅ Éxito",
+    `¡Gracias por comprar con nosotros, ${users[0].email}!`,
+    options
+  );
+
   profileModal(userconnected);
 }
 

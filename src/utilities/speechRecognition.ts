@@ -1,4 +1,10 @@
+import { showToast } from "../components/Toast";
 import searchProductsByName from "../context/SearchContext";
+
+const options = {
+  animation: true,
+  delay: 4000,
+};
 
 const recordBtn = document.getElementById("voice-search-button");
 const searchInput = document.getElementById("buscar") as HTMLInputElement;
@@ -46,7 +52,7 @@ function startRecognitionForSearch() {
       }
 
       leerTexto(errorMessage);
-      alert(errorMessage);
+      showToast("❌ Error", errorMessage, options);
     };
 
     recognition.onend = () => {
@@ -79,6 +85,11 @@ export default function createVoiceSearchButton() {
     recordBtn!.classList.add("recording");
     recordBtn!.querySelector("p")!.innerHTML = "Escuchando...";
     searchInput.setAttribute("disabled", "");
+    showToast(
+      "⚠️ Búsqueda por voz activada",
+      "Hable para buscar un producto o categoría",
+      options
+    );
   });
 }
 

@@ -1,9 +1,17 @@
 import { User, UserConnected, Purchase } from "../types";
 import { v4 } from "uuid";
-import { useLocalStorage, getLocalStorage, useSessionStorage } from "../hooks/useLocalStore";
+import {
+  useLocalStorage,
+  getLocalStorage,
+  useSessionStorage,
+} from "../hooks/useLocalStore";
 import { encrypt, decrypt } from "../utilities/crypted";
-import { activateButtonLogin, activateButtonRegister } from "../utilities/validatorForm";
+import {
+  activateButtonLogin,
+  activateButtonRegister,
+} from "../utilities/validatorForm";
 import { profileModal } from "../components/ProfileItem";
+import { showToast } from "../components/Toast";
 
 let users: User[] = [];
 let purchase: Purchase[] = [];
@@ -15,9 +23,14 @@ const email = <HTMLInputElement>registerFrom["email"];
 const password = <HTMLInputElement>registerFrom["password"];
 
 const btnlogin = document.querySelector<HTMLButtonElement>("#loginButton")!;
-const btnregister = document.querySelector<HTMLButtonElement>("#registerButton")!;
-const btnclosemodal = document.querySelector<HTMLButtonElement>("#formModalClose")!;
+const btnregister =
+  document.querySelector<HTMLButtonElement>("#registerButton")!;
+const btnclosemodal =
+  document.querySelector<HTMLButtonElement>("#formModalClose")!;
 
+const options = {
+  delay: 3000,
+};
 
 export function userRegisterContext() {
   users = getLocalStorage("users");
@@ -29,7 +42,11 @@ activateButtonRegister();
 btnregister.addEventListener("click", async (e) => {
   e.preventDefault();
   if (users.find((user) => user.email === email.value)) {
-    alert("La cuenta ya está registrada");
+    showToast(
+      "⚠️ Registro de usuario",
+      `El correo electrónico ${email.value} ya ha sido registrado previamente.`,
+      options
+    );
   } else {
     if (registerFrom.checkValidity()) {
       const passencrypted = await encrypt(email.value, password.value);
@@ -40,7 +57,7 @@ btnregister.addEventListener("click", async (e) => {
           username: username.value,
           _id: passencrypted,
           purchase,
-        }),
+        })
       );
       UserRegister(userencryted);
     }
@@ -52,9 +69,13 @@ btnlogin.addEventListener("click", (e) => {
   const checkusers = users.find((user) => user.email === email.value)!;
   if (checkusers) {
     loggedIn(password.value, checkusers.user);
-  }else{
-    alert(email.value + " no registrada")
-  }  
+  } else {
+    showToast(
+      "❌ Error",
+      "El correo electrónico y/o la contraseña son incorrectos",
+      options
+    );
+  }
 });
 
 function UserRegister(userencryted: string) {
@@ -73,11 +94,20 @@ async function loggedIn(password: string, user: string) {
     userconnected = JSON.parse(await decrypt(password, user));
     if (userconnected) {
       useSessionStorage<UserConnected>("user", userconnected);
-      alert("Bienvenido " + userconnected.username);
-      btnclosemodal.click()
+      showToast(
+        "✅ Sesión iniciada",
+        `¡Bienvenido, ${userconnected.username}!`,
+        options
+      );
+
+      btnclosemodal.click();
       profileModal(userconnected);
     }
   } catch (error) {
-    alert("Usuario y/o contraseña incorrectas");
+    showToast(
+      "❌ Error",
+      "El correo electrónico y/o la contraseña son incorrectos",
+      options
+    );
   }
 }

@@ -15,7 +15,7 @@ export default function ParallaxSection(data: SectionData) {
 
   const sectionHTML = `
     <div class="parallax-section">
-        <div class="parallax-image" style="background-image: url('/img/banner/${image}');" ></div>
+        <div class="parallax-image" style="background-image: url('./img/banner/${image}');" ></div>
         <div class="parallax-content card" id="parallaxDetails">
             <h1>${title}</h1>
             <p>${description}</p>

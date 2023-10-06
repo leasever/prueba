@@ -34,7 +34,7 @@ function ProductDetail({ _id, name, image, description }: ProductEntry) {
                         return `<div class="carousel-item  ${
                           index === 1 ? "active" : ""
                         }">
-                          <img src="${img}" class="d-block w-100 img-thumbnail" alt="${name}" loading="lazy" />
+                          <img src="${img}" class="d-block w-100 img-thumbnail" alt="${name}" />
                         </div>`;
                       }
                       return null;

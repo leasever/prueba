@@ -69,6 +69,7 @@ export default function HomePage() {
 
       </div>
     </section>
+    
     <!-- Galery products -->
     <section>
       <div class="products" name="product-section" id="product-section">

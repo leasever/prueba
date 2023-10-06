@@ -10,6 +10,7 @@ import { getSessionStorage } from "../hooks/useLocalStore";
 import { Cart, ProductEntry } from "../types";
 import { formatCurrency } from "../utilities/utils";
 import NavBar from "./NavBar";
+import { showToast } from "./Toast";
 NavBar();
 
 const cartcontainer = document.querySelector<HTMLDivElement>("#cartContainer")!;
@@ -19,7 +20,9 @@ const countItems = document.querySelector<HTMLSpanElement>("#contadorCarrito")!;
 const loginregistermodal = document.querySelector<HTMLButtonElement>(
   "#loginRegisterModal"
 )!;
-
+const options = {
+  delay: 5000,
+};
 const products: ProductEntry[] = productData as ProductEntry[];
 
 export function CartItem(cartList: Cart[]) {
@@ -155,7 +158,11 @@ btnPayment.addEventListener("click", () => {
   if (getSessionStorage("user")) {
     paymentRegister();
   } else {
-    alert("Registrese o inicie sesión para completar la venta");
     loginregistermodal.click();
+    showToast(
+      "⚠️ Registro e Ingreso",
+      "Regístrese e inicie sesión para recibir su factura y gestionar sus pedidos.",
+      options
+    );
   }
 });

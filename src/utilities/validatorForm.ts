@@ -41,3 +41,18 @@ function toggleRegisterForm() {
   modaltitle.innerText = "Registro";
   registerForm.classList.add("was-validated");
 }
+
+const passwordInput = document.querySelector<HTMLInputElement>("#password")!;
+const togglePassword = document.querySelector("#togglePassword")!;
+
+togglePassword.addEventListener("click", function () {
+  if (passwordInput.type === "password") {
+    passwordInput.type = "text";
+    togglePassword.classList.remove("fa-eye-slash");
+    togglePassword.classList.add("fa-eye");
+  } else {
+    passwordInput.type = "password";
+    togglePassword.classList.remove("fa-eye");
+    togglePassword.classList.add("fa-eye-slash");
+  }
+});
