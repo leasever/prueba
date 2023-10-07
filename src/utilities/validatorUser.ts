@@ -2,14 +2,14 @@ import { profileModal } from "../components/ProfileItem";
 import { userRegisterContext } from "../context/UserRegisterContext";
 import { getLocalStorage, getSessionStorage } from "../hooks/useLocalStore";
 
-const activateprofile =
-  document.querySelector<HTMLButtonElement>("#activateProfile")!;
-const activatecart =
-  document.querySelector<HTMLButtonElement>("#activateCart")!;
+const $ = <T extends HTMLElement>(selector: string) =>
+  document.querySelector<T>(selector);
+  
+const activateprofile = $<HTMLButtonElement>("#activateProfile")!;
+const activatecart = $<HTMLButtonElement>("#activateCart")!;
 
-const navhometab = document.querySelector<HTMLButtonElement>("#nav-home-tab")!;
-const navprofiletab =
-  document.querySelector<HTMLButtonElement>("#nav-profile-tab")!;
+const navhometab = $<HTMLButtonElement>("#nav-home-tab")!;
+const navprofiletab = $<HTMLButtonElement>("#nav-profile-tab")!;
 
 export function validatorUserConnected() {
   activateprofile.addEventListener("click", () => {

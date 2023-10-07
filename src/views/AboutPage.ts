@@ -7,11 +7,12 @@ export default function AboutPage() {
         <section class="about-us py-5">
           <div class="container">
             <div class="row align-items-center">
-              <div class="col-md-6 col-12 text-center">
+              <div class="col-md-6 col-12 text-center about-images">
                   <img
+                  loading="eager"
                   src="img/about/boutique1.png"
                   alt="Imagen de Nosotros"
-                  class="img-fluid rounded-circle mb-4 w-75 ratio ratio-1x1"
+                  class="img-fluid rounded-circle mb-4 w-75"
                   />
               </div>
               <div class="col-md-6 col-12">
@@ -30,11 +31,12 @@ export default function AboutPage() {
         <section class="about-us">
           <div class="container">
             <div class="row align-items-center flex-md-row-reverse">
-              <div class="col-md-6 col-12 text-center">
+              <div class="col-md-6 col-12 text-center about-images">
                 <img
+                  loading="eager"
                   src="img/about/boutique2.png"
                   alt="Imagen de Nosotros"
-                  class="img-fluid rounded-circle mb-4 w-75 ratio ratio-1x1"                 
+                  class="img-fluid rounded-circle mb-4 w-75"                 
                 />
               </div>
               <div class="col-md-6 col-12">
@@ -54,12 +56,11 @@ export default function AboutPage() {
         <section class="about-us py-5">
           <div class="container">
             <div class="row align-items-center">
-              <div class="col-md-6 col-12 text-center">
+              <div class="col-md-6 col-12 text-center about-images">
                 <img
                   src="img/about/boutique3.png"
                   alt="Imagen de Nosotros"
-                  class="img-fluid rounded-circle mb-4 w-75 ratio ratio-1x1"
-                  loading="lazy"
+                  class="img-fluid rounded-circle mb-4 w-75"
                 />
               </div>
               <div class="col-md-6 col-12">

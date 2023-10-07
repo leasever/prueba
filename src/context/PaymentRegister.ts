@@ -10,12 +10,14 @@ import { v4 } from "uuid";
 import { profileModal } from "../components/ProfileItem";
 import { shopingCartContext } from "./ShopingCartContext";
 import { showToast } from "../components/Toast";
+
 const options = {
-  animation: true,
   delay: 3000,
 };
+
 const navprofiletab =
   document.querySelector<HTMLButtonElement>("#nav-profile-tab")!;
+  
 export async function paymentRegister() {
   const cartlist: Cart[] = getLocalStorage("carrito");
   const userconnected: UserConnected = getSessionStorage("user");

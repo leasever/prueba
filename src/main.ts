@@ -16,17 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 window.onload = () => {
   sectLoader();
-  preloadImages(imageUrlsToPreload)
-    .then(() => {
-      // Puedes realizar otras acciones después de que las imágenes se hayan precargado
-    })
-    .catch((error) => {
-      console.error("Error al precargar imágenes:", error);
-    });
+  preloadImages();
   ProductModal();
   createVoiceSearchButton();
 };
-const imageUrlsToPreload = [
-  "img/about/boutique1.png",
-  "img/about/boutique2.png",
-];

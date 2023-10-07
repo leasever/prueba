@@ -67,7 +67,7 @@ body {
     animation: rotarload 1s ease-out infinite;
     transform: rotate(0deg);
   }
-  
+
   .toast-container {
     position: fixed;
     bottom: 0;
@@ -207,9 +207,14 @@ main {
     }
   }
 
+  .about-images {
+    aspect-ratio: 16/9;
+  }
+
   .parallax-section {
     position: relative;
     min-height: 350px;
+    width: 100%;
     overflow: hidden;
 
     .parallax-image {
@@ -280,8 +285,3 @@ footer {
   font-size: 0.85rem;
 }
 
-@media (max-width: 992px) {
-}
-
-@media (max-width: 576px) {
-}

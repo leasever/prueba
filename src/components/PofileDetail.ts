@@ -2,8 +2,25 @@ import productData from "../data/products.json";
 import { ProductEntry, UserConnected } from "../types";
 import { dateSpanish, formatCurrency } from "../utilities/utils";
 import CanvaCard from "./CanvaCard";
+
 CanvaCard();
 const products: ProductEntry[] = productData as ProductEntry[];
+
+// Importa solo lo necesario para crear el PDF cuando sea necesario
+function generatePdf(id: string) {
+  import("jspdf").then((jsPDFModule) => {
+    const jsPDF = jsPDFModule.default;
+
+    import("jspdf-autotable").then((autoTableModule) => {
+      const autoTable = autoTableModule.default;
+
+      const doc = new jsPDF();
+
+      autoTable(doc, { html: `#my-table-${id}` });
+      doc.save(`${id}.pdf`);
+    });
+  });
+}
 
 export function profileDetailPurchase(userconnected: UserConnected) {
   const purchaseDetails =
@@ -36,8 +53,10 @@ export function profileDetailPurchase(userconnected: UserConnected) {
     idtransaction.innerText = "ID: " + compra._id;
 
     const tableproduct = document.createElement("table");
+    tableproduct.setAttribute("id", `my-table-${compra._id}`);
     tableproduct.className = "table table-sm table-bordered mt-2";
     tableproduct.innerHTML += `
+    <caption >List of users</caption>
     <thead>
        <tr>        
         <th scope="col">Producto</th>
@@ -76,8 +95,17 @@ export function profileDetailPurchase(userconnected: UserConnected) {
         </tr>   
       </tfoot>`;
 
+    const btnDownloadPdf = document.createElement("button");
+    btnDownloadPdf.className = "";
+    btnDownloadPdf.type = "button";
+    btnDownloadPdf.setAttribute("id", `btn-download-${compra._id}`);
+    btnDownloadPdf.innerText = "Descargar factura";
+    btnDownloadPdf.addEventListener("click", () => {
+      generatePdf(compra._id);
+    });
+
     h2accordionheader.append(accordionbutton);
-    accordionbody.append(idtransaction, tableproduct);
+    accordionbody.append(idtransaction, tableproduct, btnDownloadPdf);
 
     accordioncollapse.append(accordionbody);
 

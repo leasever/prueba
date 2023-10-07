@@ -99,6 +99,5 @@ function leerTexto(text: string) {
   speech.rate = 1;
   speech.pitch = 0.9;
   speech.lang = "es-ES";
-
   window.speechSynthesis.speak(speech);
 }

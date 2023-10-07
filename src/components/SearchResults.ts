@@ -9,23 +9,27 @@ import searchProductsByName, {
   clearSearchContext,
 } from "../context/SearchContext";
 
+const $ = <T extends HTMLElement>(selector: string) =>
+  document.querySelector<T>(selector);
+const $$ = (selector: string) => document.createElement(selector);
+
 export default function ResultsSearch() {
-  const searchResultsShadow = document.getElementById("searchResultsShadow");
-  const cardSearch = document.createElement("div");
+  const searchResultsShadow = $("#searchResultsShadow");
+  const cardSearch = $$("div");
   cardSearch.className = "overflow-auto";
   cardSearch.id = "cardSearch";
-  const cardheader = document.createElement("div");
+  const cardheader = $$("div");
   cardheader.className = "card-header d-flex flex-row";
-  const cardbody = document.createElement("div");
+  const cardbody = $$("div");
   cardbody.className = "card-body";
 
   document.addEventListener("input", handleSearch);
 
   searchResultsShadow!.className = "d-none";
-  const searchInput = document.getElementById("buscar") as HTMLInputElement;
+  const searchInput = $("#buscar") as HTMLInputElement;
 
   function adjustCardHeight() {
-    const navbar = document.querySelector(".navbar") as HTMLHeadElement;
+    const navbar = $(".navbar") as HTMLHeadElement;
     const navbarHeight = navbar!.offsetHeight;
     cardSearch.style.maxHeight = `calc(100vh - ${navbarHeight}px)`;
   }
@@ -33,10 +37,8 @@ export default function ResultsSearch() {
   adjustCardHeight();
 
   function handleSearch(event: Event) {
-    const headerHeight = document.getElementById("searchSection")!.offsetHeight;
-    const searchResultsContainer = document.getElementById(
-      "search-results-container"
-    );
+    const headerHeight = $("#searchSection")!.offsetHeight;
+    const searchResultsContainer = $("#search-results-container");
 
     if (event.target === searchInput) {
       const query = searchInput.value.trim();
@@ -66,7 +68,7 @@ export default function ResultsSearch() {
               <button type="button" class="btn-close "  id="clearSearch"></button>              
             </div>`;
           results.forEach((result: ProductEntry) => {
-            const resultItem = document.createElement("div");
+            const resultItem = $$("div");
             resultItem.classList.add("result-item");
             const addToCart = () => {
               increaseCartQuantity(result._id);
@@ -119,14 +121,12 @@ export default function ResultsSearch() {
             searchResultsContainer!.innerHTML = "";
             searchResultsContainer!.appendChild(cardSearch);
 
-            const addToCartButton = document.querySelector(
-              `#addToCartButtonSearch${result._id}`
-            );
+            const addToCartButton = $(`#addToCartButtonSearch${result._id}`);
             addToCartButton?.addEventListener("click", addToCart);
             checkAddedToCart("#addToCartButtonSearch", result._id);
           });
         }
-        const clearButton = document.querySelector(`#clearSearch`);
+        const clearButton = $(`#clearSearch`);
         clearButton?.addEventListener("click", clearSearchContext());
       }
     }

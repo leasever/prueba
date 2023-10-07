@@ -10276,9 +10276,13 @@ main .welcome-message .carousel-dss {
 main .welcome-message .product-title h2, main .welcome-message .product-title .h2 {
   border-bottom: 3px solid #090a0d;
 }
+main .about-images {
+  aspect-ratio: 16/9;
+}
 main .parallax-section {
   position: relative;
   min-height: 350px;
+  width: 100%;
   overflow: hidden;
 }
 main .parallax-section .parallax-image {

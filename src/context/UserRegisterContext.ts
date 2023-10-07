@@ -16,17 +16,17 @@ import { showToast } from "../components/Toast";
 let users: User[] = [];
 let purchase: Purchase[] = [];
 let userconnected: UserConnected;
+const $ = <T extends HTMLElement>(selector: string) =>
+  document.querySelector<T>(selector);
 
-const registerFrom = document.querySelector<HTMLFormElement>("#registerForm")!;
+const registerFrom = $<HTMLFormElement>("#registerForm")!;
 const username = <HTMLInputElement>registerFrom["username"];
 const email = <HTMLInputElement>registerFrom["email"];
 const password = <HTMLInputElement>registerFrom["password"];
 
-const btnlogin = document.querySelector<HTMLButtonElement>("#loginButton")!;
-const btnregister =
-  document.querySelector<HTMLButtonElement>("#registerButton")!;
-const btnclosemodal =
-  document.querySelector<HTMLButtonElement>("#formModalClose")!;
+const btnlogin = $<HTMLButtonElement>("#loginButton")!;
+const btnregister = $<HTMLButtonElement>("#registerButton")!;
+const btnclosemodal = $<HTMLButtonElement>("#formModalClose")!;
 
 const options = {
   delay: 3000,

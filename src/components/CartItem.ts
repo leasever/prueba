@@ -13,13 +13,16 @@ import NavBar from "./NavBar";
 import { showToast } from "./Toast";
 NavBar();
 
-const cartcontainer = document.querySelector<HTMLDivElement>("#cartContainer")!;
-const spanTotal = document.querySelector<HTMLSpanElement>("#precioTotal")!;
-const btnPayment = document.querySelector<HTMLButtonElement>("#btnPay")!;
-const countItems = document.querySelector<HTMLSpanElement>("#contadorCarrito")!;
-const loginregistermodal = document.querySelector<HTMLButtonElement>(
-  "#loginRegisterModal"
-)!;
+const $ = <T extends HTMLElement>(selector: string) =>
+  document.querySelector<T>(selector);
+const $$ = (selector: string) => document.createElement(selector);
+
+const cartcontainer = $<HTMLDivElement>("#cartContainer")!;
+const spanTotal = $<HTMLSpanElement>("#precioTotal")!;
+const btnPayment = $<HTMLButtonElement>("#btnPay")!;
+const countItems = $<HTMLSpanElement>("#contadorCarrito")!;
+const loginregistermodal = $<HTMLButtonElement>("#loginRegisterModal")!;
+
 const options = {
   delay: 5000,
 };
@@ -43,63 +46,63 @@ export function CartItem(cartList: Cart[]) {
     countItems.innerText = count.toString();
 
     /*** container item product ***/
-    const divItemProduct = document.createElement("div");
+    const divItemProduct = $$("div");
     divItemProduct.className = "d-flex align-items-center gap-2 mb-2";
 
     /**image de product item ***/
-    const enlaceModal = document.createElement("a");
+    const enlaceModal = $$("a") as HTMLLinkElement;
     enlaceModal.href = "#staticBackdrop" + product._id;
     enlaceModal.setAttribute("data-bs-toggle", "modal");
 
     /*** product image ***/
-    const imgProduct = document.createElement("img");
+    const imgProduct = $$("img") as HTMLImageElement;
     imgProduct.src = product.image[0];
     imgProduct.className = "img-cart img-thumbnail";
 
-    const divWrap = document.createElement("div");
+    const divWrap = $$("div");
     divWrap.className =
       "d-flex flex-wrap justify-content-between w-100 gap-2 me-auto";
 
-    const divDetailProduct = document.createElement("div");
+    const divDetailProduct = $$("div");
     divDetailProduct.className = "me-auto";
 
     /*** product name ***/
-    const divProductName = document.createElement("div");
+    const divProductName = $$("div");
     divProductName.innerText = product!.name + " ";
     divProductName.className = "justify-content-start ";
 
     /*** product quantity ***/
-    const spanQuantity = document.createElement("span");
+    const spanQuantity = $$("span");
     spanQuantity.className = "text-muted quantity-cart";
     spanQuantity.innerText = "x " + item.quantity.toString();
 
     /*** product price ***/
-    const divPrice = document.createElement("div");
+    const divPrice = $$("div");
     divPrice.className = "text-muted price-cart";
     divPrice.innerText = formatCurrency(product.price).toString();
 
     /*** product subtotal ***/
-    const divSubTotal = document.createElement("div");
+    const divSubTotal = $$("div");
     divSubTotal.innerText = formatCurrency(
       product.price * item.quantity
     ).toString();
     total += product.price * item.quantity;
 
-    const divbtns = document.createElement("div");
+    const divbtns = $$("div");
     divbtns.className = "d-flex flex-wrap gap-1 col-12";
 
     /*** button decrease ***/
-    const btnDecrease = document.createElement("button");
+    const btnDecrease = $$("button") as HTMLButtonElement;
     btnDecrease.type = "button";
     btnDecrease.className = "btn btn-outline-primary icon-cart";
     btnDecrease.addEventListener("click", (): void => {
       decreaseCartQuantity(item._id);
     });
-    const iconDecrease = document.createElement("i");
+    const iconDecrease = $$("i");
     iconDecrease.className = "fas fa-minus";
 
     /*** button remove item ***/
-    const btnRemove = document.createElement("button");
+    const btnRemove = $$("button") as HTMLButtonElement;
     btnRemove.type = "button";
     btnRemove.className = "btn btn-danger icon-cart";
     btnRemove.addEventListener("click", () => {
@@ -109,17 +112,17 @@ export function CartItem(cartList: Cart[]) {
       }
       return;
     });
-    const iconRemove = document.createElement("i");
+    const iconRemove = $$("i");
     iconRemove.className = "fas fa-trash-alt";
 
     /*** button increase ***/
-    const btnIncrease = document.createElement("button");
+    const btnIncrease = $$("button") as HTMLButtonElement;
     btnIncrease.type = "button";
     btnIncrease.className = "btn btn-outline-primary icon-cart";
     btnIncrease.addEventListener("click", () => {
       increaseCartQuantity(item._id);
     });
-    const iconIncrease = document.createElement("i");
+    const iconIncrease = $$("i");
     iconIncrease.className = "fas fa-plus";
 
     /*** insert html ***/
@@ -160,8 +163,8 @@ btnPayment.addEventListener("click", () => {
   } else {
     loginregistermodal.click();
     showToast(
-      "⚠️ Registro e Ingreso",
-      "Regístrese e inicie sesión para recibir su factura y gestionar sus pedidos.",
+      "⚠️ Registro o Ingreso ",
+      "Regístrese o inicie sesión para recibir su factura y gestionar sus pedidos.",
       options
     );
   }

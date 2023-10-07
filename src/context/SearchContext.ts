@@ -2,6 +2,8 @@ import { ProductEntry } from "../types";
 import productData from "../data/products.json";
 
 const products: ProductEntry[] = productData as ProductEntry[];
+const $ = <T extends HTMLElement>(selector: string) =>
+  document.querySelector<T>(selector);
 
 export default function searchProductsByName(query: string): ProductEntry[] {
   // Divide el texto de búsqueda en palabras individuales
@@ -17,9 +19,9 @@ export default function searchProductsByName(query: string): ProductEntry[] {
 }
 
 export function clearSearchContext() {
-  const cardSearch = document.querySelector("#cardSearch");
-  const searchInput = document.querySelector("#buscar") as HTMLInputElement;
-  const searchResultsShadow = document.querySelector("#searchResultsShadow");
+  const cardSearch = $("#cardSearch");
+  const searchInput = $("#buscar") as HTMLInputElement;
+  const searchResultsShadow = $("#searchResultsShadow");
   const clearSearch = () => {
     cardSearch!.remove();
     searchInput.removeAttribute("disabled");

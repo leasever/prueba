@@ -1,49 +1,38 @@
 import LoginRegisterModal from "../components/LoginModal";
 
 LoginRegisterModal();
+const $ = <T extends HTMLElement>(selector: string) =>
+  document.querySelector<T>(selector);
 
-const registerForm = document.querySelector<HTMLFormElement>("#registerForm")!;
+const registerForm = $<HTMLFormElement>("#registerForm")!;
 const username = <HTMLInputElement>registerForm["username"];
+const passwordInput = $<HTMLInputElement>("#password")!;
+const togglePassword = $("#togglePassword")!;
+const btnlogin = $<HTMLButtonElement>("#loginButton")!;
+const btnregister = $<HTMLButtonElement>("#registerButton")!;
+const btnactivelogin = $<HTMLLinkElement>("#activeBtnLogin")!;
+const btnactiveregister = $<HTMLLinkElement>("#activeBtnRegister")!;
+const modaltitle = $<HTMLHeadingElement>("#modalTitle")!;
 
-const btnlogin = document.querySelector<HTMLButtonElement>("#loginButton")!;
-const btnregister =
-  document.querySelector<HTMLButtonElement>("#registerButton")!;
-const btnactivelogin =
-  document.querySelector<HTMLLinkElement>("#activeBtnLogin")!;
-const btnactiveregister =
-  document.querySelector<HTMLLinkElement>("#activeBtnRegister")!;
-const modaltitle = document.querySelector<HTMLHeadingElement>("#modalTitle")!;
-
-export function activateButtonLogin() {
-  btnactivelogin.addEventListener("click", toggleLoginForm);
+function hideElement(element: HTMLElement) {
+  element.classList.add("visually-hidden");
 }
 
-export function activateButtonRegister() {
-  btnactiveregister.addEventListener("click", toggleRegisterForm);
+function showElement(element: HTMLElement) {
+  element.classList.remove("visually-hidden");
 }
 
-function toggleLoginForm() {
-  username.classList.add("visually-hidden");
-  btnregister.classList.add("visually-hidden");
-  btnactivelogin.classList.add("visually-hidden");
-  btnlogin.classList.remove("visually-hidden");
-  btnactiveregister.classList.remove("visually-hidden");
-  modaltitle.innerText = "Iniciar sesión";
-  registerForm.classList.remove("was-validated");
+function toggleFormElements() {
+  hideElement(username);
+  hideElement(btnregister);
+  hideElement(btnactivelogin);
+  showElement(btnlogin);
+  showElement(btnactiveregister);
 }
 
-function toggleRegisterForm() {
-  username.classList.remove("visually-hidden");
-  btnregister.classList.remove("visually-hidden");
-  btnactivelogin.classList.remove("visually-hidden");
-  btnlogin.classList.add("visually-hidden");
-  btnactiveregister.classList.add("visually-hidden");
-  modaltitle.innerText = "Registro";
-  registerForm.classList.add("was-validated");
+function toggleFormTitle(title: string) {
+  modaltitle.innerText = title;
 }
-
-const passwordInput = document.querySelector<HTMLInputElement>("#password")!;
-const togglePassword = document.querySelector("#togglePassword")!;
 
 togglePassword.addEventListener("click", function () {
   if (passwordInput.type === "password") {
@@ -56,3 +45,22 @@ togglePassword.addEventListener("click", function () {
     togglePassword.classList.add("fa-eye-slash");
   }
 });
+
+export function activateButtonLogin() {
+  btnactivelogin.addEventListener("click", () => {
+    toggleFormElements();
+    toggleFormTitle("Iniciar sesión");
+  });
+}
+
+export function activateButtonRegister() {
+  btnactiveregister.addEventListener("click", () => {
+    showElement(username);
+    showElement(btnregister);
+    showElement(btnactivelogin);
+    hideElement(btnlogin);
+    hideElement(btnactiveregister);
+    toggleFormTitle("Registro");
+    registerForm.classList.add("was-validated");
+  });
+}

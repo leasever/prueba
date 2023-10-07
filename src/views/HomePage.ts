@@ -3,9 +3,9 @@ import ProductCard from "../components/ProductCard";
 import productData from "../data/products.json";
 import { ProductEntry } from "../types";
 
-const sectionData = {
-  id: "parallaxSection", 
-  image: "parallax_home.jpg", 
+const sectionDataParallax = {
+  id: "parallaxSection",
+  image: "parallax_home.jpg",
   title: "Outlet DSStore",
   description: "Los mejores productos con grandes descuentos.",
 };
@@ -86,7 +86,7 @@ export default function HomePage() {
       <section id="parallaxSection" class="container-xxl"></section>
     `),
     cardProducts(),
-    ParallaxSection(sectionData)
+    ParallaxSection(sectionDataParallax)
   );
 }
 

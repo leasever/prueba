@@ -4,7 +4,10 @@ import { useLocalStorage, getLocalStorage } from "../hooks/useLocalStore";
 import { Cart } from "../types";
 let cartList: Cart[] = [];
 
-const cartcontainer = document.querySelector<HTMLDivElement>("#cartContainer")!;
+const $ = <T extends HTMLElement>(selector: string) =>
+  document.querySelector<T>(selector);
+
+const cartcontainer = $<HTMLDivElement>("#cartContainer")!;
 
 export function shopingCartContext() {
   cartList = getLocalStorage("carrito");
@@ -59,9 +62,7 @@ export function removeFromCart(_id: number) {
 }
 
 function checkIconAdded(_id: number, condition: boolean) {
-  const iconAdded = document.querySelector<HTMLButtonElement>(
-    "#addToCartButton" + _id
-  )!;
+  const iconAdded = $<HTMLButtonElement>("#addToCartButton" + _id)!;
   if (condition) {
     iconAdded.setAttribute("disabled", "");
     iconAdded.innerText = `Añadido ✅`;
@@ -80,9 +81,7 @@ function updateCart(cartList: Cart[]) {
 export function checkAddedToCart(buttonName: string, _id: number) {
   updateCart(cartList);
   cartList = getLocalStorage("carrito");
-  const iconAdded = document.querySelector<HTMLButtonElement>(
-    `${buttonName + _id}`
-  )!;
+  const iconAdded = $<HTMLButtonElement>(`${buttonName + _id}`)!;
   if (iconAdded != null && cartList != null) {
     iconAdded.removeAttribute("disabled");
     iconAdded.innerText = `Añadir 🛒`;
