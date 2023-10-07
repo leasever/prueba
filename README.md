@@ -181,3 +181,9 @@ Abraham Leandro - Linkedin - leandrovegaabraham@gmail.com
 Enlace al Proyecto: https://stotets.pages.dev/
 
 <p align="right">(<a href="#readme-top">Volver Arriba</a>)</p>
+
+<!-- MARKDOWN LINKS & IMAGES -->
+
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+
+[product-screenshot]: public/leasever.github.io_shoppingCart-typeScript.png
