@@ -10,12 +10,56 @@ const products: ProductEntry[] = productData as ProductEntry[];
 function generatePdf(id: string) {
   import("jspdf").then((jsPDFModule) => {
     const jsPDF = jsPDFModule.default;
-
+    const doc = new jsPDF();
     import("jspdf-autotable").then((autoTableModule) => {
+      //       //
+      //       //_____________________________________________________________________________________________________
+      //       //                                                                          _________________________
+      //       //LOGO 'img/logo.png'                                                      |   FACTURA ELECTRÓNICA   |
+      //       //                                                                         |     RUC:20112811096     |
+      //       //                                                                         |        F001-53948       |
+      //       //                                                                          -------------------------
+      //       //TCI S.A TRANSPORTE CONFIDENCIAL DE INFORMACIÓN
+      //       //TCI S.A
+      //       //MIGUEL SEMINARIO 230
+      //       //LIMA-LIMA-SAN ISIDRO
+      //       //
+      //       // __________________________________________________________________________________________________
+      //       //| Fecha de Emisión: 2019-12-12          Fecha de vencimiento: 2019-12-18                           |
+      //       //| Señor(es):        UNIVERSIDAD FRANCISCANA SAN JOSÉ                                               |
+      //       //| Dirección:        AV. JAVIER PRADO ESTE 390, SAN BORJA, LIMA - PERÚ                              |
+      //       //| RUC:              20157394329                                                                    |
+      //       //| Tipo Moneda:      SOL                                                                            |
+      //       // --------------------------------------------------------------------------------------------------
+      //       //
+      //       // __________________________________________________________________________________________________
+      //       //| Item |           Descripción                 |     V.U     |    Cantidad    |    Importe sin IGV |
+      //       // --------------------------------------------------------------------------------------------------
+      //       //|   1  | PAGO MENSUAL Servicio A               |   1,650.00  |         1.000  |           1,650.00 |
+      //       // --------------------------------------------------------------------------------------------------
+      //       //|   2  | PAGO MENSUAL Servicio B               |   1,650.00  |         1.000  |           1,650.00 |
+      //       // --------------------------------------------------------------------------------------------------
+      //       //
+      //       //
+      //       // __________________________________________________________________________________________________
+      //       //| Operación Sujeta al Sistema de pago de Obligaciones Tributarias D.Leg.940-12.00%(S/380.20 SOLES) |
+      //       //| -CÓDIGO SE BB Y SS SUJETO A DETRACCIÓN:     037 - Demás servicios gravados con el IGV            |
+      //       //| -NÚMERO DE CTA EN EL BIN:                   5222910                                              |
+      //       // --------------------------------------------------------------------------------------------------
+      //       //
+      //       //
+      //       //                                 ___________________________________________________________________
+      //       //                                | Total de Valor de Venta - Operaciones Gravadas:  | S/    2,684.00 |
+      //       //                                 -------------------------------------------------------------------
+      //       //                                | IGV:                                             | S/    2,684.00 |
+      //       //                                 -------------------------------------------------------------------
+      //       //                                | Importe Total:                                   | S/    2,684.00 |
+      //       //                                 -------------------------------------------------------------------
+      //       //
+      //       //_____________________________________________________________________________________________________
+
+      //       //estaba haciendo con esto autotable pero tambien puedes usar el autotable con lo de arriba despues ára adaptarlo primero hacemos una muestra
       const autoTable = autoTableModule.default;
-
-      const doc = new jsPDF();
-
       autoTable(doc, { html: `#my-table-${id}` });
       doc.save(`${id}.pdf`);
     });
@@ -56,7 +100,7 @@ export function profileDetailPurchase(userconnected: UserConnected) {
     tableproduct.setAttribute("id", `my-table-${compra._id}`);
     tableproduct.className = "table table-sm table-bordered mt-2";
     tableproduct.innerHTML += `
-    <caption >List of users</caption>
+    
     <thead>
        <tr>        
         <th scope="col">Producto</th>

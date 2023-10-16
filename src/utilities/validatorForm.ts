@@ -1,4 +1,4 @@
-import LoginRegisterModal from "../components/LoginModal";
+import LoginRegisterModal from "../components/RegisterLoginModal";
 
 LoginRegisterModal();
 const $ = <T extends HTMLElement>(selector: string) =>
@@ -50,6 +50,7 @@ export function activateButtonLogin() {
   btnactivelogin.addEventListener("click", () => {
     toggleFormElements();
     toggleFormTitle("Iniciar sesión");
+    registerForm.classList.remove("was-validated");
   });
 }
 

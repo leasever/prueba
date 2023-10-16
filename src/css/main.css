@@ -10312,8 +10312,8 @@ main .parallax-section .parallax-content {
 .password-toggle-icon {
   cursor: pointer;
   position: absolute;
-  top: 50%;
-  right: 10px;
+  top: 23px;
+  right: 30px;
   transform: translateY(-50%);
 }
 
