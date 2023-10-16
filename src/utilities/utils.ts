@@ -23,3 +23,4 @@ export function sectLoader() {
   const sectloader = document.querySelector<HTMLDivElement>("#loaderSection")!;
   sectloader.setAttribute("style", "visibility:hidden; opacity:0;");
 }
+
