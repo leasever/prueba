@@ -159,6 +159,8 @@ header {
   .selected {
     font-weight: bold;
     text-decoration: underline;
+    pointer-events: none;
+    cursor: not-allowed;
   }
 
   .search-result-section {

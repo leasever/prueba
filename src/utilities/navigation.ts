@@ -1,30 +1,40 @@
 import { shopingCartContext } from "../context/ShopingCartContext";
 import { getLocalStorage } from "../hooks/useLocalStore";
-import AboutPage from "../views/AboutPage";
-import HomePage from "../views/HomePage";
-import ProductsPage from "../views/ProductsPage";
 
 export default function navigation() {
   const mainContent = document.getElementById("main-content");
   const navLinks = document.querySelectorAll(".nav-menu");
 
-  function homePage() {
-    HomePage();
-    if (getLocalStorage("carrito")) shopingCartContext();
-  }
-
-  function aboutPage() {
-    AboutPage();
-  }
-
-  function productsPage() {
-    ProductsPage();
-    if (getLocalStorage("carrito")) shopingCartContext();
-  }
-
-  function loadPage(pageFunction: () => void) {
+  function loadPage(pageName: string) {
     mainContent!.innerHTML = "";
-    pageFunction();
+    switch (pageName) {
+      case "homePage":
+        import("../views/HomePage").then((module) => {
+          module.default();
+          markInitialLink(pageName);
+        });
+        break;
+      case "aboutPage":
+        import("../views/AboutPage").then((module) => {
+          module.default();
+          markInitialLink(pageName);
+        });
+        break;
+      case "productPage":
+        import("../views/ProductsPage").then((module) => {
+          module.default();
+          markInitialLink(pageName);
+        });
+        break;
+      default:
+        history.pushState(null, "", "/homePage");
+        loadPage("homePage");
+        break;
+    }
+
+    if (getLocalStorage("carrito")) {
+      shopingCartContext();
+    }
   }
 
   function handleNavLinkClick(e: Event) {
@@ -37,19 +47,9 @@ export default function navigation() {
       link.classList.remove("selected");
     });
 
-    switch (targetSection) {
-      case "homePage":
-        loadPage(homePage);
-        break;
-      case "aboutPage":
-        loadPage(aboutPage);
-        break;
-      case "productPage":
-        loadPage(productsPage);
-        break;
-      default:
-        break;
-    }
+    history.pushState(null, "", `/${targetSection}`);
+
+    loadPage(targetSection);
 
     (e.currentTarget as HTMLElement).classList.add("selected");
   }
@@ -58,6 +58,13 @@ export default function navigation() {
     link.addEventListener("click", handleNavLinkClick);
   });
 
-  navLinks[0].classList.add("selected");
-  loadPage(HomePage);
+  function markInitialLink(pageName: string) {
+    const initialLink = document.querySelector(`[href="/${pageName}"]`);
+    if (initialLink) {
+      initialLink.classList.add("selected");
+    }
+  }
+
+  const initialPage = window.location.pathname.substr(1);
+  loadPage(initialPage);
 }

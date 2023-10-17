@@ -24,15 +24,15 @@ export default function NavBar() {
       <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
         <ul class="navbar-nav me-auto mb-2 mb-md-0">
           <li class="nav-item">
-            <a class="nav-link nav-menu" aria-current="page" href="#homePage"
+            <a class="nav-link nav-menu" aria-current="page" href="/homePage"
               >Inicio</a
             >
           </li>
           <li class="nav-item">
-            <a class="nav-link nav-menu" href="#aboutPage">Acerca de</a>
+            <a class="nav-link nav-menu" href="/aboutPage">Acerca de</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link nav-menu" href="#productPage">Productos</a>
+            <a class="nav-link nav-menu" href="/productPage">Productos</a>
           </li>
         </ul>
 

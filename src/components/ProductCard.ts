@@ -1,4 +1,7 @@
-import { increaseCartQuantity } from "../context/ShopingCartContext";
+import {
+  checkAddedToCart,
+  increaseCartQuantity,
+} from "../context/ShopingCartContext";
 import { ProductEntry } from "../types";
 import { formatCurrency } from "../utilities/utils";
 import Rating from "../utilities/rating";
@@ -67,6 +70,7 @@ export default function ProductCard({
 
   const addToCartButton = container.querySelector(`#addToCartButton${_id}`);
   addToCartButton?.addEventListener("click", addToCart);
+  checkAddedToCart("#addToCartButton", _id);
 
   return container.firstElementChild as HTMLElement;
 }

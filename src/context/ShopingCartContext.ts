@@ -12,13 +12,6 @@ const cartcontainer = $<HTMLDivElement>("#cartContainer")!;
 export function shopingCartContext() {
   cartList = getLocalStorage("carrito");
   updateCart(cartList);
-  cartList.forEach((item) => {
-    if (item?._id) {
-      checkIconAdded(item._id, true);
-    } else {
-      checkIconAdded(item._id, false);
-    }
-  });
 }
 
 export function increaseCartQuantity(_id: number) {

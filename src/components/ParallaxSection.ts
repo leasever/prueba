@@ -34,7 +34,7 @@ export default function ParallaxSection(data: SectionData) {
 
   function navigateToProductPage() {
     const productosNavLink = document.querySelector(
-      ".nav-menu[href='#productPage']"
+      ".nav-menu[href='/productPage']"
     );
     if (productosNavLink instanceof HTMLElement) {
       productosNavLink.click();

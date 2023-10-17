@@ -1,4 +1,5 @@
 import ProductCard from "../components/ProductCard";
+import { checkAddedToCart } from "../context/ShopingCartContext";
 import productData from "../data/products.json";
 import { ProductEntry } from "../types";
 
@@ -32,5 +33,6 @@ function cardProducts() {
   products.forEach((product) => {
     const productCard = ProductCard(product);
     productContainer?.appendChild(productCard);
+    checkAddedToCart("#addToCartButton", product._id);
   });
 }

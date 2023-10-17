@@ -10238,6 +10238,8 @@ header .record.recording i {
 header .selected {
   font-weight: bold;
   text-decoration: underline;
+  pointer-events: none;
+  cursor: not-allowed;
 }
 header .search-result-section {
   position: absolute;
